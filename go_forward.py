@@ -7,7 +7,18 @@ bw = back_wheels.Back_Wheels(db='config')
 forward_speed = 90
 
 def start_follower():
-	print "start_follow"
-	bw.speed = forward_speed
 
-start_follower()
+	while True:
+
+		print "start_follow"
+		bw.speed = forward_speed
+
+def stop():
+	bw.stop()
+	#fw.turn_straight()
+
+if __name__ == '__main__':
+	try:
+		start_follower()
+	except KeyboardInterrupt:
+		stop()
