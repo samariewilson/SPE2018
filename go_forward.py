@@ -4,7 +4,7 @@ import picar
 picar.setup()
 
 bw = back_wheels.Back_Wheels(db='config')
-forward_speed = 120
+forward_speed = 100
 
 def start_follower():
 
