@@ -14,18 +14,27 @@ def start_follower():
 	while True:
 
 		print "start_follow"
-		bw.speed = forward_speed
+
+		try:
 
         #if turn left key was pressed
-		if keyboard.is_pressed('q'):
-			left_turn()
+			if keyboard.is_pressed('q'):
 
+				left_turn()
+				print("test2")
+
+			else:
+				bw.speed = forward_speed
+				print("test3")
+		except KeyboardInterrupt:
+			stop()
 def stop():
 	bw.stop()
 	#fw.turn_straight()
 
 def left_turn():
 	fw.turn_left()
+	print("test1")
 
 if __name__ == '__main__':
 	try:
