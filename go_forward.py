@@ -8,7 +8,6 @@ picar.setup()
 
 fw = front_wheels.Front_Wheels(db='config')
 bw = back_wheels.Back_Wheels(db='config')
-forward_speed = 100
 
 def start_follower():
 
