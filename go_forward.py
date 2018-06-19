@@ -6,7 +6,7 @@ import picar
 from curses import wrapper
 
 
-wrapper(stop)
+#wrapper(stop)
 wrapper(left_turn)
 wrapper(start_follower)
 picar.setup()
@@ -30,7 +30,7 @@ def start_follower():
         else:
             bw.speed = forward_speed
             print("test3")
-    
+
 
 
 def stop():
