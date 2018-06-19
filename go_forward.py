@@ -5,6 +5,7 @@ import picar
 
 from curses import wrapper
 
+curses.initscr()
 
 curses.wrapper(stop)
 curses.wrapper(left_turn)
