@@ -1,7 +1,7 @@
 from picar import back_wheels
 from picar import front_wheels
 import picar
-import keyboard
+import sys
 
 picar.setup()
 
@@ -12,18 +12,19 @@ forward_speed = 100
 
 def start_follower():
 
-    while True:
-		if keyboard.is_pressed('q'):
+    for line in sys.stdin:
+		c = line[0]
+		if  c == 'q':
 			stop()
 			exit()
-		if keyboard.is_pressed('a'):
+		if c =='a':
 		 	left_turn()
-		if keyboard.is_pressed('d'):
+		if c == 'd':
 			right_turn()
-		if keyboard.is_pressed('s'):
+		if c  == 's':
 			bw.speed = forward_speed
 			bw.backward()
-		elif keyboard.is_press('w'):
+		elif  c == 'w':
 			bw.speed = forward_speed
 			bw.forward()
 		else:
