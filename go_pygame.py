@@ -4,7 +4,6 @@ import picar
 import pygame
 
 pygame.init()
-pygame.display.set_mode()
 picar.setup()
 
 fw = front_wheels.Front_Wheels(db='config')
@@ -31,9 +30,3 @@ def left_turn():
 
 def right_turn():
 	fw.turn_right()
-
-if __name__ == '__main__':
-	try:
-		start_follower()
-	except KeyboardInterrupt:
-		stop()
