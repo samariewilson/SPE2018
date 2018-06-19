@@ -12,11 +12,11 @@ forward_speed = 100
 
 def start_follower():
 	print ("start Follower")
-	for line in sys.stdin:
+	while True:
 		print("test1")
-		c = line[0]
+
+		c = input()
 		print (c)
-		print line
 
 		if  c == 'q':
 			stop()
