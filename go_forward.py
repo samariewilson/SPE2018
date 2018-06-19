@@ -6,7 +6,7 @@ import picar
 from curses import wrapper
 import curses
 
-curses.initscr()
+
 
 picar.setup()
 
