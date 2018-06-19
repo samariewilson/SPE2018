@@ -6,7 +6,7 @@ import picar
 from curses import wrapper
 
 
-#wrapper(stop)
+wrapper(stop)
 wrapper(left_turn)
 wrapper(start_follower)
 picar.setup()
