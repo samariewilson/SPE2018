@@ -48,12 +48,12 @@ def stop():
     bw.stop()
 
 def left_turn():
-	fw.turn(85)
+	fw.turn(82)
 
 def straight_turn():
-    fw.turn(105)
+    fw.turn(102)
 def right_turn():
-	fw.turn(15)
+	fw.turn(12)
 
 if __name__ == '__main__':
 	try:
