@@ -4,6 +4,7 @@ import picar
 import pygame
 
 pygame.init()
+pygame.display.set_mode()
 picar.setup()
 
 fw = front_wheels.Front_Wheels(db='config')
