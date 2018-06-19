@@ -1,7 +1,7 @@
 from picar import back_wheels
 from picar import front_wheels
 import picar
-import time
+
 
 from curses import wrapper
 
