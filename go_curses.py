@@ -20,27 +20,24 @@ bw = back_wheels.Back_Wheels(db='config')
 forward_speed = 100
 
 def start_follower():
-
-	while True:
-
+    while True:
         c = screen.getch()
         screen.addstr(str(c))
-
-		if  c == 'q':
-			stop()
+        if  c == 'q':
+            stop()
             curses.endwin()
-			exit()
-		if c =='a':
+            exit()
+        if c =='a':
 		 	left_turn()
-		if c == 'd':
+        if c == 'd':
 			right_turn()
-		if c  == 's':
+        if c  == 's':
 			bw.speed = forward_speed
 			bw.backward()
-		elif  c == 'w':
+        elif  c == 'w':
 			bw.speed = forward_speed
 			bw.forward()
-		else:
+        else:
 			stop()
 
 def stop():
