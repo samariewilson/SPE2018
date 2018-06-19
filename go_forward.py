@@ -2,34 +2,38 @@ from picar import back_wheels
 from picar import front_wheels
 import picar
 import time
-import keyboard
+from curses import wrapper
 
+wrapper(stop)
+wrapper(left_turn)
+wrapper(start_follower)
 picar.setup()
 
 fw = front_wheels.Front_Wheels(db='config')
 bw = back_wheels.Back_Wheels(db='config')
 
+
 def start_follower():
+    stdscr.nodelay(True)
+    stdscr.clear()
 
-	while True:
+    while True:
+        c = stdscr.getch()
+        curses.flushinp()
+        print("start_follow")
 
-		print "start_follow"
+		# if turn left key was pressed
+        if c == curses.KEY_LEFT:
+            fw.left_turn()
+        else:
+            bw.speed = forward_speed
+            print("test3")
+        except KeyboardInterrupt:
+            stop()
 
-		try:
 
-        #if turn left key was pressed
-			if keyboard.is_pressed('q'):
-
-				left_turn()
-				print("test2")
-
-			else:
-				bw.speed = forward_speed
-				print("test3")
-		except KeyboardInterrupt:
-			stop()
 def stop():
-	bw.stop()
+    bw.stop()
 	#fw.turn_straight()
 
 def left_turn():
