@@ -11,12 +11,13 @@ bw = back_wheels.Back_Wheels(db='config')
 forward_speed = 100
 
 def start_follower():
-
-    for line in sys.stdin:
+	print ("start Follower")
+	for line in sys.stdin:
+		print("test1")
 		c = line[0]
 		print (c)
 		print line
-		
+
 		if  c == 'q':
 			stop()
 			exit()
