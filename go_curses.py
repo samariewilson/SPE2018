@@ -28,17 +28,17 @@ def start_follower():
             curses.endwin()
             exit()
         if c == 97:
-		 	left_turn()
+            left_turn()
             bw.speed = forward_speed
         if c == 100:
-			right_turn()
+            right_turn()
             bw.speed = forward_speed
         if c  == 119:
 			bw.speed = forward_speed
 			bw.backward()
         elif  c == 115:
-			bw.speed = forward_speed
-			bw.forward()
+            bw.speed = forward_speed
+            bw.forward()
             fw.turn_straight()
         else:
 			stop()
