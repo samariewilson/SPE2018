@@ -23,18 +23,18 @@ def start_follower():
     while True:
         c = screen.getch()
         screen.addstr(str(c))
-        if  c == 'q':
+        if  c == 113:
             stop()
             curses.endwin()
             exit()
-        if c =='a':
+        if c == 97:
 		 	left_turn()
-        if c == 'd':
+        if c == 100:
 			right_turn()
-        if c  == 's':
+        if c  == 115:
 			bw.speed = forward_speed
 			bw.backward()
-        elif  c == 'w':
+        elif  c == 119:
 			bw.speed = forward_speed
 			bw.forward()
         else:
