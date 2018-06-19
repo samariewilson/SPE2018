@@ -29,14 +29,17 @@ def start_follower():
             exit()
         if c == 97:
 		 	left_turn()
+            bw.speed = forward_speed
         if c == 100:
 			right_turn()
-        if c  == 115:
+            bw.speed = forward_speed
+        if c  == 119:
 			bw.speed = forward_speed
 			bw.backward()
-        elif  c == 119:
+        elif  c == 115:
 			bw.speed = forward_speed
 			bw.forward()
+            fw.turn_straight()
         else:
 			stop()
 
