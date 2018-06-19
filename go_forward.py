@@ -13,20 +13,18 @@ forward_speed = 100
 def start_follower():
 
     while True:
-        print("start_follow")
-
-        if keyboard.is_pressed('a'):
-            left_turn()
-		if keyboard.is_pressed('d'):
-			right_turn()
 		if keyboard.is_pressed('q'):
 			stop()
 			exit()
+		if keyboard.is_pressed('a'):
+		 	left_turn()
+		if keyboard.is_pressed('d'):
+			right_turn()
 		if keyboard.is_pressed('s'):
 			bw.speed = forward_speed
 			bw.backward()
-        elif keyboard.is_press('w'):
-            bw.speed = forward_speed
+		elif keyboard.is_press('w'):
+			bw.speed = forward_speed
 			bw.forward()
 		else:
 			stop()
