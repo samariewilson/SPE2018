@@ -1,4 +1,4 @@
-rom picar import back_wheels
+from picar import back_wheels
 from picar import front_wheels
 import picar
 import pygame
@@ -18,7 +18,7 @@ while True:
                 left_turn()
             if event.key == pygame.K_q:
                 stop()
-            
+
 
 
 def stop():
