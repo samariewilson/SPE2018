@@ -13,7 +13,7 @@ def start_follower():
 
 		# if turn left key was pressed
         if c == curses.KEY_LEFT:
-            fw.left_turn()
+            fw.turn_left()
         else:
             bw.speed = forward_speed
             print("test3")
