@@ -36,6 +36,7 @@ def start_follower():
         elif c  == 119:
 			bw.speed = forward_speed
 			bw.backward()
+            fw.turn_straight()
         elif  c == 115:
             bw.speed = forward_speed
             bw.forward()
