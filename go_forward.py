@@ -30,8 +30,7 @@ def start_follower():
         else:
             bw.speed = forward_speed
             print("test3")
-        except KeyboardInterrupt:
-            stop()
+    
 
 
 def stop():
