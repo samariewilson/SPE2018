@@ -8,9 +8,9 @@ import curses
 
 curses.initscr()
 
-curses.wrapper(stop)
-curses.wrapper(left_turn)
-curses.wrapper(start_follower)
+curses.wrapper(stop())
+curses.wrapper(left_turn())
+curses.wrapper(start_follower())
 picar.setup()
 
 fw = front_wheels.Front_Wheels(db='config')
