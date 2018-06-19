@@ -24,6 +24,8 @@ def stop():
 
 def left_turn():
 	fw.turn_left()
+    fw.turn_straight()
+    
 
 
 if __name__ == '__main__':
