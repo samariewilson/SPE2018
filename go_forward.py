@@ -14,6 +14,9 @@ def start_follower():
 
     for line in sys.stdin:
 		c = line[0]
+		print (c)
+		print line
+		
 		if  c == 'q':
 			stop()
 			exit()
