@@ -22,9 +22,12 @@ class SimpleEcho(WebSocket):
     def handleMessage(self):
         print(self.data)
         if self.data == "up":
+            print("test1")
             bw.speed = forward_speed
             bw.backward()
+            print("test2")
             straight_turn()
+            print("test3")
         elif self.data == "down":
             bw.speed = forward_speed
             bw.forward()
