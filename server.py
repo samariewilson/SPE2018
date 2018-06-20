@@ -5,6 +5,8 @@ from picar import front_wheels
 
 import picar
 import curses
+import time
+import RPi.GPIO as GPIO
 
 import sys
 
