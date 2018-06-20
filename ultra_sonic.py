@@ -92,7 +92,8 @@ if __name__ == '__main__':
         if distance != -1:
             print 'distance', distance, 'cm'
             bw.speed = forward_speed
-            bw.forward()
+            bw.backward()
+            fw.turn(102)
             time.sleep(0.2)
         else:
             print False
