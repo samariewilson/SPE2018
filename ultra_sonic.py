@@ -1,5 +1,21 @@
+from picar import back_wheels
+from picar import front_wheels
+import picar
+import curses
+
 import time
 import RPi.GPIO as GPIO
+
+screen = curses.initscr()
+#screen.addstr("Hello World!")
+screen.refresh()
+
+picar.setup()
+
+fw = front_wheels.Front_Wheels(db='config')
+bw = back_wheels.Back_Wheels(db='config')
+
+forward_speed = 100
 
 class Ultrasonic_Avoidance(object):
     timeout = 0.05
@@ -70,14 +86,23 @@ if __name__ == '__main__':
 	while True:
 		distance = UA.get_distance()
 		status = UA.less_than(threshold)
-		if distance != -1:
-			print 'distance', distance, 'cm'
-			time.sleep(0.2)
-		else:
-			print False
-		if status == 1:
-			print "Less than %d" % threshold
-		elif status == 0:
-			print "Over %d" % threshold
-		else:
+
+
+        if distance != -1:
+            print 'distance', distance, 'cm'
+            bw.speed = forward_speed
+            bw.forward()
+            time.sleep(0.2)
+        else:
+            print False
+            bw.stop()
+        if status == 1:
+            print "Less than %d" % threshold
+            bw.speed = forward_speed
+            bw.forward()
+
+        elif status == 0:
+            print "Over %d" % threshold
+            bw.stop()
+        else:
 			print "Read distance error."
