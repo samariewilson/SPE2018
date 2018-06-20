@@ -41,7 +41,9 @@ class SimpleEcho(WebSocket):
         #elif self.data == "straight":
             #straight_turn()
         else:
+            print("test4")
             stop()
+            print("test5")
 
 
     def stop():
