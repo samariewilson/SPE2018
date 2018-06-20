@@ -1,7 +1,10 @@
 from picar import back_wheels
 from picar import front_wheels
+from multiprocessing import Process
+
 import picar
 import curses
+import Process
 
 import time
 import RPi.GPIO as GPIO
@@ -16,6 +19,31 @@ fw = front_wheels.Front_Wheels(db='config')
 bw = back_wheels.Back_Wheels(db='config')
 
 forward_speed = 100
+
+def loop_a():
+    distance = UA.get_distance()
+    print (distance)
+    print ("test1")
+    status = UA.less_than(threshold)
+    print (status)
+    print ("test2")
+
+    if distance != -1:
+        print 'distance', distance, 'cm'
+        time.sleep(0.2)
+    else:
+        print False
+        bw.stop()
+
+def loop_b():
+    if distance == -1:
+        print('YIKES')
+        bw.stop()
+    if distance != -1:
+        print('YAY')
+        bw.speed = forward_speed
+        bw.backward()
+        fw.turn(102)
 
 class Ultrasonic_Avoidance(object):
     timeout = 0.05
@@ -80,7 +108,7 @@ class Ultrasonic_Avoidance(object):
 		#print 'status =',status
 		return status
 
-if __name__ == '__main__':
+''' if __name__ == '__main__':
     UA = Ultrasonic_Avoidance(17)
     threshold = 10
     while True:
@@ -139,3 +167,10 @@ if __name__ == '__main__':
             bw.stop()
         else:
 			print "Read distance error."
+            '''
+
+if __name__ == '__main__':
+    UA = Ultrasonic_Avoidance(17)
+    threshold = 10
+    Process(target=loop_a).start()
+    Process(target=loop_b).start()
