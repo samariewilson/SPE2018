@@ -26,20 +26,20 @@ class SimpleEcho(WebSocket):
             bw.speed = forward_speed
             bw.backward()
             print("test2")
-        #    straight_turn()
+            straight_turn()
             print("test3")
         elif self.data == "down":
             bw.speed = forward_speed
             bw.forward()
-            #straight_turn()
+            straight_turn()
         elif self.data == "right":
             right_turn()
             bw.speed = forward_speed
         elif self.data == "left":
             left_turn()
             bw.speed = forward_speed
-        #elif self.data == "straight":
-            #straight_turn()
+        elif self.data == "straight":
+            straight_turn()
         else:
             print("test4")
             stop()
@@ -140,7 +140,7 @@ def distanceLoop():
             bw.stop()
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
-p1 = Process(target=server.serveforever())
+p1 = Process(target=server.serveforever
 p2 = Process(target=distanceLoop)
 p2.start()
 p1.start()
