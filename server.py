@@ -1,5 +1,5 @@
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-
+import threading
 import sys
 
 port = 9876
@@ -45,5 +45,23 @@ class SimpleEcho(WebSocket):
     def handleClose(self):
         print(self.address, 'closed')
 
-server = SimpleWebSocketServer('', port, SimpleEcho)
-server.serveforever()
+
+class serverThread(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.server = SimpleWebSocketServer('', port, SimpleEcho)
+    def run(self):
+        self.server.serveforever()
+class distanceThread(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+    def run(self):
+        while True:
+            pass
+            #test distance
+
+st = serverThread()
+ht = distanceThread()
+
+st.start()
+ht.start()
