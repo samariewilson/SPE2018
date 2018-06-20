@@ -91,10 +91,15 @@ if __name__ == '__main__':
 
         if c == 119:
             distance = UA.get_distance()
+            print (distance)
+            print ("test1")
             status = UA.less_than(threshold)
+            print (status)
+            print ("test2")
             bw.speed = forward_speed
             bw.backward()
             fw.turn(102)
+            print("test3")
 
             if distance != -1:
                 print 'distance', distance, 'cm'
