@@ -131,7 +131,8 @@ def distanceLoop():
     while True:
         distance = UA.get_distance()
         status = UA.less_than(threshold)
-
+        print(distance)
+        print (status)
         if distance != -1:
             print 'distance', distance, 'cm'
             time.sleep(0.2)
