@@ -1,5 +1,5 @@
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-import threading
+from multiprocessing import Process
 import sys
 
 port = 9876
@@ -46,22 +46,13 @@ class SimpleEcho(WebSocket):
         print(self.address, 'closed')
 
 
-class serverThread(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.server = SimpleWebSocketServer('', port, SimpleEcho)
-    def run(self):
-        self.server.serveforever()
-class distanceThread(threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-    def run(self):
-        while True:
-            pass
-            #test distance
+def hello():
+    print "Hello World"
 
-st = serverThread()
-ht = distanceThread()
-
-st.start()
-ht.start()
+server = SimpleWebSocketServer('', port, SimpleEcho)
+p1 = Process(target=server.serveforever)
+p2 = Process(target=hello)
+p2.start()
+p1.start()
+p1.join()
+p2.join()
