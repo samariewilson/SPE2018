@@ -105,8 +105,7 @@ if __name__ == '__main__':
                 print False
                 bw.stop()
 
-        # quit with q
-        if  c == 113:
+        elif  c == 113:
             bw.stop()
             curses.endwin()
             exit()
