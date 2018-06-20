@@ -4,7 +4,7 @@ from multiprocessing import Process
 
 import picar
 import curses
-import Process
+
 
 import time
 import RPi.GPIO as GPIO
