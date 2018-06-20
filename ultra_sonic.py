@@ -84,9 +84,9 @@ if __name__ == '__main__':
     UA = Ultrasonic_Avoidance(17)
     threshold = 10
     while True:
-        #bw.speed = forward_speed
-        #bw.forward()
-        #time.sleep(0.2)
+        bw.speed = forward_speed
+        bw.backward()
+        fw.turn(102)
         distance = UA.get_distance()
         status = UA.less_than(threshold)
         if distance != -1:
