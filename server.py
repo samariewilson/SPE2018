@@ -126,7 +126,7 @@ class Ultrasonic_Avoidance(object):
 		#print 'status =',status
 		return status
 def distanceLoop():
-    UA = Ultrasonic_Avoidance(17)
+    UA = Ultrasonic_Avoidance(20)
     threshold = 10
     while True:
         distance = UA.get_distance()
@@ -141,8 +141,8 @@ def distanceLoop():
             bw.stop()
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
-#p1 = Process(target=server.serveforever)
-p2 = Process(target=distanceLoop())
+p1 = Process(target=server.serveforever)
+p2 = Process(target=distanceLoop)
 p2.start()
 p1.start()
 p1.join()
