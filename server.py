@@ -55,7 +55,7 @@ def left_turn():
 def straight_turn():
     fw.turn(102)
 def right_turn():
-    fw.turn(12)
+    fw.turn(122)
 
     def handleConnected(self):
         print(self.address, 'connected')
