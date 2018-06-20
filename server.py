@@ -18,7 +18,9 @@ forward_speed = 100
 port = 9876
 
 class SimpleEcho(WebSocket):
-
+    def __init__(self):
+        self.fw = front_wheels.Front_Wheels(db='config')
+        self.bw = back_wheels.Back_Wheels(db='config')
     def handleMessage(self):
         print(self.data)
         if self.data == "up":
@@ -26,7 +28,8 @@ class SimpleEcho(WebSocket):
             bw.speed = forward_speed
             bw.backward()
             print("test2")
-            straight_turn()
+            #straight_turn()
+            self.fw.turn(102)
             print("test3")
         elif self.data == "down":
             bw.speed = forward_speed
