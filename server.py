@@ -42,7 +42,7 @@ class SimpleEcho(WebSocket):
             #straight_turn()
         else:
             print("test4")
-            stop()
+            bw.stop()
             print("test5")
 
 
