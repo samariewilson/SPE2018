@@ -89,7 +89,7 @@ class Ultrasonic_Avoidance(object):
 		while GPIO.input(self.channel)==1:
 			pulse_end = time.time()
 			if pulse_start - timeout_start > self.timeout:
-				return -1
+				return -2
 
 		if pulse_start != 0 and pulse_end != 0:
 			pulse_duration = pulse_end - pulse_start
@@ -100,11 +100,11 @@ class Ultrasonic_Avoidance(object):
 			if distance >= 0:
 				return distance
 			else:
-				return -1
+				return -3
 		else :
 			#print 'start = %s'%pulse_start,
 			#print 'end = %s'%pulse_end
-			return -1
+			return -4
 
     def get_distance(self, mount = 5):
 		sum = 0
