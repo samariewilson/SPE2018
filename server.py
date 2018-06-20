@@ -42,20 +42,20 @@ class SimpleEcho(WebSocket):
             #straight_turn()
         else:
             print("test4")
-            bw.stop()
+            stop()
             print("test5")
 
 
-    def stop():
-        bw.stop()
+def stop():
+    bw.stop()
 
-    def left_turn():
-    	fw.turn(82)
+def left_turn():
+    fw.turn(82)
 
-    def straight_turn():
-        fw.turn(102)
-    def right_turn():
-    	fw.turn(12)
+def straight_turn():
+    fw.turn(102)
+def right_turn():
+    fw.turn(12)
 
     def handleConnected(self):
         print(self.address, 'connected')
