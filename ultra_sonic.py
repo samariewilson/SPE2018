@@ -89,6 +89,8 @@ if __name__ == '__main__':
         fw.turn(102)
         distance = UA.get_distance()
         status = UA.less_than(threshold)
+        print (distance)
+        print (status)
         if distance != -1:
             print 'distance', distance, 'cm'
             bw.speed = forward_speed
