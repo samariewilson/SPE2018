@@ -81,19 +81,19 @@ class Ultrasonic_Avoidance(object):
 		return status
 
 if __name__ == '__main__':
-	UA = Ultrasonic_Avoidance(17)
-	threshold = 10
-	while True:
+    UA = Ultrasonic_Avoidance(17)
+    threshold = 10
+    while True:
         bw.speed = forward_speed
         bw.forward()
         time.sleep(0.2)
-		distance = UA.get_distance()
-		status = UA.less_than(threshold)
+        distance = UA.get_distance()
+        status = UA.less_than(threshold)
         if distance != -1:
             print 'distance', distance, 'cm'
             bw.speed = forward_speed
             bw.forward()
-            time.sleep(0.2)
+            time.sleep(2)
         else:
             print False
             bw.stop()
