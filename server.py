@@ -116,7 +116,7 @@ class Ultrasonic_Avoidance(object):
     def less_than(self, alarm_gate):
 		dis = self.get_distance()
 		status = 0
-		if dis >=0 and dis <= alarm_gate:
+		if dis >= 2 and dis <= alarm_gate:
 			status = 1
 		elif dis > alarm_gate:
 			status = 0
@@ -140,13 +140,18 @@ def distanceLoop():
         else:
             print False
             bw.stop()
+        # if the car is in the alarming range
         if status == 1:
+            left_turn()
+            bw.speed = forward_speed
 			print "Less than %d" % threshold
+        # distance is greater so be normal
         elif status == 0:
             print "Over %d" % threshold
-            bw.stop()
         else:
+            bw.stop()
 			print "Read distance error."
+
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target=server.serveforever)
