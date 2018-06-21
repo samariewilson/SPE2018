@@ -1,5 +1,5 @@
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-from multiprocessing import Process
+from multiprocessing import Process, Value
 from picar import back_wheels
 from picar import front_wheels
 
@@ -17,13 +17,13 @@ forward_speed = 100
 
 port = 9876
 
-close_to_wall = False
+close_to_wall = Value ('b', False)
 
 class SimpleEcho(WebSocket):
 
     def handleMessage(self):
-        print(self.data, close_to_wall)
-        if not close_to_wall and self.data == "up":
+        print(self.data, close_to_wall.value)
+        if not close_to_wall.value and self.data == "up":
             bw.speed = forward_speed
             bw.backward()
             straight_turn()
@@ -135,18 +135,18 @@ def distanceLoop():
             time.sleep(0.2)
         else:
             print False
-            close_to_wall = True
+            close_to_wall.value = True
             bw.stop()
         # if the car is in the alarming range
         if status == 1:
-            close_to_wall = True
+            close_to_wall.value = True
             bw.stop()
             print "Less than %d" % threshold
         # distance is greater so be normal
         elif status == 0:
             print "Over %d" % threshold
         else:
-            close_to_wall = True
+            close_to_wall.value = True
             bw.stop()
             print "Read distance error."
 
