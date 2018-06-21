@@ -135,6 +135,7 @@ def distanceLoop():
         print (status)
         if distance != -1:
             print 'distance', distance, 'cm'
+            print(test)
             time.sleep(0.2)
         else:
             print False
