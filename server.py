@@ -116,7 +116,7 @@ class Ultrasonic_Avoidance(object):
     def less_than(self, alarm_gate):
 		dis = self.get_distance()
 		status = 0
-		if dis >= 2 and dis <= alarm_gate:
+		if dis >= 0 and dis <= alarm_gate:
 			status = 1
 		elif dis > alarm_gate:
 			status = 0
