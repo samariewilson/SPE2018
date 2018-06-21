@@ -144,13 +144,13 @@ def distanceLoop():
         if status == 1:
             left_turn()
             bw.speed = forward_speed
-			print "Less than %d" % threshold
+            print "Less than %d" % threshold
         # distance is greater so be normal
         elif status == 0:
             print "Over %d" % threshold
         else:
             bw.stop()
-			print "Read distance error."
+            print "Read distance error."
 
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
