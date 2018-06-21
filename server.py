@@ -17,11 +17,13 @@ forward_speed = 100
 
 port = 9876
 
+close_to_wall = False
+
 class SimpleEcho(WebSocket):
 
     def handleMessage(self):
         print(self.data)
-        if self.data == "up":
+        if not close_to_wall and self.data == "up":
             bw.speed = forward_speed
             bw.backward()
             straight_turn()
@@ -133,11 +135,12 @@ def distanceLoop():
             time.sleep(0.2)
         else:
             print False
+            close_to_wall = True
             bw.stop()
         # if the car is in the alarming range
         if status == 1:
-            left_turn()
-            bw.speed = forward_speed
+            close_to_wall = True
+            bw.stop()
             print "Less than %d" % threshold
         # distance is greater so be normal
         elif status == 0:
