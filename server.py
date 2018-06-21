@@ -22,7 +22,7 @@ close_to_wall = False
 class SimpleEcho(WebSocket):
 
     def handleMessage(self):
-        print(self.data)
+        print(self.data, close_to_wall)
         if not close_to_wall and self.data == "up":
             bw.speed = forward_speed
             bw.backward()
