@@ -144,6 +144,7 @@ def distanceLoop():
 			print "Less than %d" % threshold
 		elif status == 0:
 			print "Over %d" % threshold
+            bw.stop()
 		else:
 			print "Read distance error."
 
