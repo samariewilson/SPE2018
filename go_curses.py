@@ -44,7 +44,7 @@ def start_follower():
             bw.speed = forward_speed
             bw.backward()
             straight_turn()
-            
+
         #if s then go backward
         elif  c == 115:
             bw.speed = forward_speed
@@ -62,7 +62,7 @@ def left_turn():
 def straight_turn():
     fw.turn(102)
 def right_turn():
-	fw.turn(12)
+	fw.turn(122)
 
 if __name__ == '__main__':
 	try:
