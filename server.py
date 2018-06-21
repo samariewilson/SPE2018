@@ -38,9 +38,7 @@ class SimpleEcho(WebSocket):
         elif self.data == "straight":
             straight_turn()
         else:
-            print("test4")
             stop()
-            print("test5")
 
 
 def stop():
@@ -132,7 +130,6 @@ def distanceLoop():
         print (status)
         if distance != -1:
             print 'distance', distance, 'cm'
-            print(test)
             time.sleep(0.2)
         else:
             print False
