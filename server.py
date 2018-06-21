@@ -140,6 +140,12 @@ def distanceLoop():
         else:
             print False
             bw.stop()
+        if status == 1:
+			print "Less than %d" % threshold
+		elif status == 0:
+			print "Over %d" % threshold
+		else:
+			print "Read distance error."
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target=server.serveforever)
