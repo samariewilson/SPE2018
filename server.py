@@ -146,6 +146,7 @@ def distanceLoop():
         elif status == 0:
             print "Over %d" % threshold
         else:
+            close_to_wall = True
             bw.stop()
             print "Read distance error."
 
