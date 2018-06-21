@@ -124,7 +124,7 @@ class Ultrasonic_Avoidance(object):
 		return status
 def distanceLoop():
     UA = Ultrasonic_Avoidance(20)
-    threshold = 10
+    threshold = 20
     while True:
         distance = UA.get_distance()
         status = UA.less_than(threshold)
@@ -145,6 +145,7 @@ def distanceLoop():
         # distance is greater so be normal
         elif status == 0:
             print "Over %d" % threshold
+            close_to_wall.value = False
         else:
             close_to_wall.value = True
             bw.stop()
