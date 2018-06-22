@@ -1,6 +1,5 @@
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from multiprocessing import Process, Value
-from ctypes import c_bool
 from picar import back_wheels
 from picar import front_wheels
 
@@ -18,8 +17,8 @@ forward_speed = 80
 
 port = 9876
 
-close_to_wall = Value (c_bool, False)
-emergency_backup = Value (c_bool, False)
+close_to_wall = Value ('b', False)
+emergency_backup = Value ('b', False)
 
 class SimpleEcho(WebSocket):
 
@@ -152,7 +151,7 @@ def distanceLoop():
             bw.stop()
         # if the car is in the alarming range
         if status == 1:
-            emergency_backup = True
+            emergency_backup.value = True
             close_to_wall.value = True
             bw.speed = forward_speed
             bw.forward()
