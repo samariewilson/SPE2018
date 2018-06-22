@@ -1,5 +1,6 @@
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from multiprocessing import Process, Value
+from ctypes import c_bool
 from picar import back_wheels
 from picar import front_wheels
 
@@ -17,8 +18,8 @@ forward_speed = 80
 
 port = 9876
 
-close_to_wall = Value ('b', False)
-emergency_backup = Value ('b', False)
+close_to_wall = Value (c_bool, False)
+emergency_backup = Value (c_bool, False)
 
 class SimpleEcho(WebSocket):
 
