@@ -133,7 +133,7 @@ class Ultrasonic_Avoidance(object):
 
 # Responses for status and distance
 def distanceLoop():
-    global emergency_backup
+    
 
     UA = Ultrasonic_Avoidance(20)
     threshold = 30
