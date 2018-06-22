@@ -88,6 +88,7 @@ class Ultrasonic_Avoidance(object):
 			if pulse_start - timeout_start > self.timeout:
 				return -1
 
+# Computes distance
 		if pulse_start != 0 and pulse_end != 0:
 			pulse_duration = pulse_end - pulse_start
 			distance = pulse_duration * 100 * 343.0 /2
@@ -103,6 +104,7 @@ class Ultrasonic_Avoidance(object):
 			#print 'end = %s'%pulse_end
 			return -1
 
+# Computes average distances
     def get_distance(self, mount = 5):
 		sum = 0
 		for i in range(mount):
@@ -110,6 +112,8 @@ class Ultrasonic_Avoidance(object):
 			#print '    %s' % a
 			sum += a
 		return int(sum/mount)
+
+# Sets distance condtions for status
     def less_than(self, alarm_gate):
 		dis = self.get_distance()
 		status = 0
@@ -122,6 +126,8 @@ class Ultrasonic_Avoidance(object):
 		#print 'distance =',dis
 		#print 'status =',status
 		return status
+
+# Responses for status and distance
 def distanceLoop():
     UA = Ultrasonic_Avoidance(20)
     threshold = 20
@@ -129,7 +135,7 @@ def distanceLoop():
         distance = UA.get_distance()
         status = UA.less_than(threshold)
         print(distance)
-        print (status)
+        print(status)
         if distance != -1:
             print 'distance', distance, 'cm'
             time.sleep(0.2)
