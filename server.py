@@ -149,7 +149,6 @@ def distanceLoop():
             bw.speed = forward_speed
             bw.forward()
             straight_turn()
-            time.sleep(2)
             print "Less than %d" % threshold
         # distance is fine so be normal
         elif status == 0:
