@@ -109,7 +109,7 @@ class Ultrasonic_Avoidance(object):
 			return -1
 
 # Computes average distances
-    def get_distance(self, mount = 5):
+    def get_distance(self, mount = 10):
 		sum = 0
 		for i in range(mount):
 			a = self.distance()
