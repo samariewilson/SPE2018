@@ -50,7 +50,7 @@ def left_turn():
     fw.turn(82)
 
 def straight_turn():
-    fw.turn(102)
+    fw.turn(90)
 def right_turn():
     fw.turn(122)
 
