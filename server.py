@@ -146,8 +146,9 @@ def distanceLoop():
         # if the car is in the alarming range
         if status == 1:
             close_to_wall.value = True
-            fw.turn(125)
             bw.speed = forward_speed
+            bw.forward()
+            straight_turn()
             print "Less than %d" % threshold
         # distance is fine so be normal
         elif status == 0:
