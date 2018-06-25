@@ -5,12 +5,15 @@ import iwlist
 content = iwlist.scan(interface='wlan0')
 cells = iwlist.parse(content)
 mac_ssid_list = []
+for x in mac_ssid_list[0].keys(): 
+    print (x)
 for i in cells:
     mac = i["mac"]
     ssid = i["essid"]
     signal = i["db"]
+
     print mac, ssid, signal
-    
+
     mac_ssid_list.append((mac, ssid, signal))
 import urllib2
 
