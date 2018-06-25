@@ -8,8 +8,8 @@ mac_ssid_list = []
 for i in cells:
     mac = i.mac
     ssid = i.essid
-    db = i.db
-    mac_ssid_list.append((mac, ssid, db))
+    signal = i.db
+    mac_ssid_list.append((mac, ssid, signal))
 import urllib2
 
 # Pass mac address, ssid and signal strength from located ap's to google maps api
