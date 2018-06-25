@@ -8,7 +8,7 @@ signal = 0
 
 for i in cells:
 
-    if i["essid"].startswith("Catherine"):
+    if i["essid"].startswith("Pixel"):
 
         mac = i["mac"]
         signal = i["signal_level_dBm"]
