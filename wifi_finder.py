@@ -5,12 +5,12 @@ import iwlist
 content = iwlist.scan(interface='wlan0')
 cells = iwlist.parse(content)
 mac_ssid_list = []
-for x in cells[0].keys(): 
+for x in cells[0].keys():
     print (x)
 for i in cells:
     mac = i["mac"]
     ssid = i["essid"]
-    signal = i["db"]
+    signal = i["signal_level_dBm"]
 
     print mac, ssid, signal
 
