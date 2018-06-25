@@ -18,6 +18,6 @@ from datetime import datetime
 
 gmaps = googlemaps.Client(key='AIzaSyBISsgHLO4Uf6N3WbzGkOfdQrfK5kLWlpM')
 
-location = googlemaps.geolocate(gmaps, wifi_access_points=mac_ssid_list)
+location = gmaps.geolocate(wifi_access_points=mac_ssid_list)
 
 print location
