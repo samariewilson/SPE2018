@@ -20,7 +20,7 @@ import urllib2
 # Pass mac address, ssid and signal strength from located ap's to google maps api
 def geo_locator(mac_ssid_list):
     gl_url = 'https://maps.googleapis.com/maps/api/browserlocation/json?browser=firefox&sensor=true'
-    for (mac, ssid, sig) in mac_ssid_list:
+    for (mac, ssid, sig) in mac_ssid_list[:3]:
 
         gl_url += "&wifi=mac:%s%%7Cssid:%s%%7Css:%s" % (mac.replace(":", "-"), ssid.replace(" ", "%20"), sig)
     print gl_url
