@@ -14,10 +14,10 @@ for i in cells:
 
 import googlemaps
 from datetime import datetime
-import geolocation
+
 
 gmaps = googlemaps.Client(key='AIzaSyBISsgHLO4Uf6N3WbzGkOfdQrfK5kLWlpM')
 
-location = geolocation.geolocate(gmaps, wifi_access_points=mac_ssid_list)
+location = googlemaps.geolocate(gmaps, wifi_access_points=mac_ssid_list)
 
 print location
