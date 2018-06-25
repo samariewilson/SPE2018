@@ -21,7 +21,9 @@ import urllib2
 def geo_locator(mac_ssid_list):
     gl_url = 'https://maps.googleapis.com/maps/api/browserlocation/json?browser=firefox&sensor=true'
     for (mac, ssid, sig) in mac_ssid_list:
+
         gl_url += "&wifi=mac:%s%%7Cssid:%s%%7Css:%s" % (mac.replace(":", "-"), ssid.replace(" ", "%20"), sig)
+    print gl_url
     api_response = urllib2.urlopen(gl_url).read() # reads the html response from server
     latitude = re.compile('"lat" : (.+),').findall(api_response)[0]
     longitude = re.compile('"lng" : (.+)').findall(api_response)[0]
