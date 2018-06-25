@@ -11,7 +11,7 @@ for i in cells:
     signal = i["signal_level_dBm"]
     age = 0
 
-    print mac, ssid, signal
+
 
     mac_ssid_list.append({"macAddress": mac, "signalStrength": signal, "age": 0})
 
