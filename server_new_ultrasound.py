@@ -72,41 +72,49 @@ class Ultrasonic_Avoidance(object):
 		GPIO.setmode(GPIO.BCM)
 
     def distance(self):
-		pulse_end = 0
-		pulse_start = 0
-		GPIO.setup(self.channel,GPIO.OUT)
-		GPIO.output(self.channel, False)
-		time.sleep(0.01)
-		GPIO.output(self.channel, True)
-		time.sleep(0.00001)
-		GPIO.output(self.channel, False)
-		GPIO.setup(self.channel,GPIO.IN)
+		try:
+      GPIO.setmode(GPIO.BOARD)
 
-		timeout_start = time.time()
-		while GPIO.input(self.channel)==0:
-			pulse_start = time.time()
-			if pulse_start - timeout_start > self.timeout:
-				return -1
-		while GPIO.input(self.channel)==1:
-			pulse_end = time.time()
-			if pulse_start - timeout_start > self.timeout:
-				return -1
+      PIN_TRIGGER = 16
+      PIN_ECHO = 20
 
-# Computes distance
-		if pulse_start != 0 and pulse_end != 0:
-			pulse_duration = pulse_end - pulse_start
-			distance = pulse_duration * 100 * 343.0 /2
-			distance = int(distance)
-			#print 'start = %s'%pulse_start,
-			#print 'end = %s'%pulse_end
-			if distance >= 0:
-				return distance
-			else:
-				return -1
-		else :
-			#print 'start = %s'%pulse_start,
-			#print 'end = %s'%pulse_end
-			return -1
+      GPIO.setup(PIN_TRIGGER, GPIO.OUT)
+      GPIO.setup(PIN_ECHO, GPIO.IN)
+
+      GPIO.output(PIN_TRIGGER, GPIO.LOW)
+
+      print "Waiting for sensor to settle"
+      time.sleep(2)
+      print "Calculating distance"
+
+      GPIO.output(PIN_TRIGGER, GPIO.HIGH)
+      time.sleep(0.00001)
+      GPIO.output(PIN_TRIGGER, GPIO.LOW)
+
+      timeout_start = time.time()
+      while GPIO.input(PIN_ECHO)==0:
+            pulse_start_time = time.time()
+            if pulse_start - timeout_start > self.timeout:
+                return -1
+      while GPIO.input(PIN_ECHO)==1:
+            pulse_end_time = time.time()
+            if pulse_start - timeout_start > self.timeout:
+                return -1
+        # Computes distance
+        if pulse_start != 0 and pulse_end != 0:
+        	pulse_duration = pulse_end - pulse_start
+        	distance = pulse_duration * 100 * 343.0 /2
+        	distance = int(distance)
+        	#print 'start = %s'%pulse_start,
+        	#print 'end = %s'%pulse_end
+        	if distance >= 0:
+        		return distance
+        	else:
+        		return -1
+        else :
+        	#print 'start = %s'%pulse_start,
+        	#print 'end = %s'%pulse_end
+        	return -1
 
 # Computes average distances
     def get_distance(self, mount = 10):
@@ -133,7 +141,6 @@ class Ultrasonic_Avoidance(object):
 
 # Responses for status and distance
 def distanceLoop():
-
 
     UA = Ultrasonic_Avoidance(20)
     threshold = 30
