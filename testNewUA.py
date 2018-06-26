@@ -30,11 +30,11 @@ class Ultrasonic_Avoidance:
 
         timeout_start = time.time()
         while GPIO.input(self.echo) == 0:
-            pulse_start_time = time.time()
+            pulse_start = time.time()
             if pulse_start - timeout_start > self.timeout:
                 return -1
         while GPIO.input(self.echo) == 1:
-            pulse_end_time = time.time()
+            pulse_end = time.time()
             if pulse_start - timeout_start > self.timeout:
                 return -1
           # Computes distance
