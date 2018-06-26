@@ -100,17 +100,30 @@ class Ultrasonic_Avoidance:
 
         return distance
 
+    def less_than(self, alarm_gate):
+		dis = self.distance()
+		status = 0
+		if dis >=0 and dis <= alarm_gate:
+			status = 1
+		elif dis > alarm_gate:
+			status = 0
+		else:
+			status = -1
+		#print 'distance =',dis
+		#print 'status =',status
+		return status
+
 # Responses for status and distance
 def distanceLoop():
 
 
-    UA = Ultrasonic_Avoidance(20)
+    UA = Ultrasonic_Avoidance(20,16)
     threshold = 30
     while True:
-        distance = UA.get_distance()
+        distance = UA.distance()
         status = UA.less_than(threshold)
         print(distance)
-        print(status)
+        #print(status)
         if distance != -1:
             print 'distance', distance, 'cm'
             time.sleep(0.2)
