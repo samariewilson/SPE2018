@@ -51,7 +51,7 @@ if __name__ == '__main__':
     trig = 20
     echo = 16
     def make_Ultrasonic_Avoidance(trig, echo):
-        senor = Ultrasonic_Avoidance(trig, echo)
+        sensor = Ultrasonic_Avoidance(trig, echo)
         return sensor
     threshold = 10
     distance = sensor.distance()
