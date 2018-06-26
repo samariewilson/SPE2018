@@ -10,6 +10,8 @@ class Ultrasonic_Avoidance:
         GPIO.setmode(GPIO.BOARD)
 
     def distance(self):
+        print(self.trig, self.echo)
+
         GPIO.setup(self.trig, GPIO.OUT)
         GPIO.setup(self.echo, GPIO.IN)
 
