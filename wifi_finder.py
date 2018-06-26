@@ -12,12 +12,11 @@ for i in cells:
     age = 0
     mac_ssid_list.append({"macAddress": mac, "signalStrength": signal, "age": 0})
 
+print mac_ssid_list
 import googlemaps
 from datetime import datetime
 
-
 gmaps = googlemaps.Client(key='AIzaSyBISsgHLO4Uf6N3WbzGkOfdQrfK5kLWlpM')
-
 location = gmaps.geolocate(wifi_access_points=mac_ssid_list)
 
 print location
