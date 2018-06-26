@@ -67,36 +67,32 @@ def right_turn():
 class Ultrasonic_Avoidance(object):
     timeout = 0.05
 
-    def __init__(self, channel):
-		self.channel = channel
-		GPIO.setmode(GPIO.BCM)
+    def __init__(self, trig, echo):
+		self.trig = trig
+        self.echo = echo
+        GPIO.setmode(GPIO.BOARD)
 
     def distance(self):
-		try:
-      GPIO.setmode(GPIO.BOARD)
 
-      PIN_TRIGGER = 16
-      PIN_ECHO = 20
+      GPIO.setup(self.trig, GPIO.OUT)
+      GPIO.setup(self.echo, GPIO.IN)
 
-      GPIO.setup(PIN_TRIGGER, GPIO.OUT)
-      GPIO.setup(PIN_ECHO, GPIO.IN)
-
-      GPIO.output(PIN_TRIGGER, GPIO.LOW)
+      GPIO.output(self.trig, GPIO.LOW)
 
       print "Waiting for sensor to settle"
       time.sleep(2)
       print "Calculating distance"
 
-      GPIO.output(PIN_TRIGGER, GPIO.HIGH)
+      GPIO.output(self.trig, GPIO.HIGH)
       time.sleep(0.00001)
-      GPIO.output(PIN_TRIGGER, GPIO.LOW)
+      GPIO.output(self.trig, GPIO.LOW)
 
       timeout_start = time.time()
-      while GPIO.input(PIN_ECHO)==0:
+      while GPIO.input(self.echo)==0:
             pulse_start_time = time.time()
             if pulse_start - timeout_start > self.timeout:
                 return -1
-      while GPIO.input(PIN_ECHO)==1:
+      while GPIO.input(self.echo)==1:
             pulse_end_time = time.time()
             if pulse_start - timeout_start > self.timeout:
                 return -1
@@ -142,7 +138,7 @@ class Ultrasonic_Avoidance(object):
 # Responses for status and distance
 def distanceLoop():
 
-    UA = Ultrasonic_Avoidance(20)
+    UA = Ultrasonic_Avoidance(16, 20)
     threshold = 30
     while True:
         distance = UA.get_distance()
