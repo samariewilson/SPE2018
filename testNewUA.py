@@ -7,7 +7,7 @@ class Ultrasonic_Avoidance:
     def __init__(self, trig, echo):
         self.trig = trig
         self.echo = echo
-        GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BCM)
 
     def distance(self):
         print(self.trig, self.echo)
