@@ -1,5 +1,5 @@
 
-class Ultrasonic_Avoidance(object):
+class Ultrasonic_Avoidance:
     timeout = 0.05
 
 def __init__(self, trig, echo):
