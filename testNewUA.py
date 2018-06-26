@@ -42,6 +42,8 @@ class Ultrasonic_Avoidance:
                 pulse_duration = pulse_end - pulse_start
                 distance = pulse_duration * 100 * 343.0 / 2
                 distance = int(distance)
+
+                print pulse_duration
           # print 'start = %s'%pulse_start,
           # print 'end = %s'%pulse_end
                 if distance >= 0:
