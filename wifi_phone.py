@@ -15,6 +15,6 @@ for i in cells:
         age = 0
         break
 
-    print i
+    
 
 print signal
