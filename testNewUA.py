@@ -1,3 +1,5 @@
+import time
+import RPi.GPIO as GPIO
 
 class Ultrasonic_Avoidance:
     timeout = 0.05
