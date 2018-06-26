@@ -40,4 +40,4 @@ class Ultrasonic_Avoidance:
 if __name__ == '__main__':
 
     sensor = Ultrasonic_Avoidance(20, 16)
-    sensor.distance()
+    print sensor.distance()
