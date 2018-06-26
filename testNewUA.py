@@ -11,8 +11,8 @@ class Ultrasonic_Avoidance:
 
     def distance(self):
         pulse_end = 0
-		pulse_start = 0
-        
+        pulse_start = 0
+
         print(self.trig, self.echo)
 
         GPIO.setup(self.trig, GPIO.OUT)
