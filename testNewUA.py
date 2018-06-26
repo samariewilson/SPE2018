@@ -48,11 +48,12 @@ def distance(self):
 
 
 if __name__ == '__main__':
-    trig = 20
-    echo = 16
+    # trig = 20
+    # echo = 16
     def make_Ultrasonic_Avoidance(trig, echo):
         sensor = Ultrasonic_Avoidance(trig, echo)
         return sensor
     threshold = 10
+    sensor = make_Ultrasonic_Avoidance(20,16)
     distance = sensor.distance()
     print(distance)
