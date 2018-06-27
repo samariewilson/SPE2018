@@ -1,6 +1,7 @@
 from sys import exit
 import logging
 import iwlist
+import time
 
 while (True):
     content = iwlist.scan(interface='wlan0')
@@ -18,4 +19,4 @@ while (True):
             break
 
     print signal
-    sleep (2)
+    time.sleep (2)
