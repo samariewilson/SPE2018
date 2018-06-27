@@ -1,6 +1,13 @@
-proc = open('/proc/net/wireless', 'rb')
-proc.readline()
-proc.readline()
-data = proc.readline()
-newData = data.split()
-print float(newData[3])
+import time
+
+while(True):
+
+    proc = open('/proc/net/wireless', 'rb')
+    proc.readline()
+    proc.readline()
+    data = proc.readline()
+    proc.close()
+    newData = data.split()
+    signal = float(newData[3])
+    print signal
+    time.sleep(1)
