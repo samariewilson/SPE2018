@@ -3,4 +3,4 @@ proc.readline()
 proc.readline()
 data = proc.readline()
 newData = data.split()
-print newData
+print float(newData[3])
