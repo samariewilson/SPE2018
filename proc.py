@@ -2,5 +2,5 @@ proc = open('/proc/net/wireless', 'rb')
 proc.readline()
 proc.readline()
 data = proc.readline()
-
-print data
+newData = data.split()
+print newData
