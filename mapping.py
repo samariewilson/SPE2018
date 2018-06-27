@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # adds coordinates and strength to a 3 dimensional list
+# need to make these lists global so we can use the function
 def add_point(x, y, strength):
     x_coord = []
     y_coord = []
@@ -61,7 +62,3 @@ if __name__ == '__main__':
     y = [23, 87, 2, 47, 23, 90, 61, 33, 47, 12]
 
     map(x, y, strength)
-
-    '''plt.scatter(x, y, c = x)
-
-    plt.show()'''
