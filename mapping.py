@@ -11,20 +11,33 @@ def add_point(x, y, strength):
     x_coord.append(x)
     y_coord.append(y)
     signal_strength.append(strength)
-    print(x_coord)
-    print(y_coord)
-    print(signal_strength)
 
+# returns the range of a list
+def data_range(x):
+    range = max(x) - min(x)
+    return range
+# maps the x,y coordinates to a scatter plot with different colors depending
+# on signal strength
 def map(x, y, strength):
     x_coord = x
     y_coord = y
     signal_strength = strength
-    max = 70
-    increment = 10
-    size = 1000
+
+    max = np.max(strength)                   # maximum recorded signal strength
+
+    increment = data_range(strength) / 8     # evenly splits data into 8
+                                             # sections for color coding
+
+    increment_x = data_range(x) / 10         # evenly splits x,y lists for
+    increment_y = data_range(y) / 10         # graphing
+
+    size = 1000                              # size of markers
+
+    # determines how strong signal is at each point and plots that point with
+    # the corresponding color (strong signal = red, weak signal = blue)
     for i in range(len(x)):
         if strength[i] >= max:
-            plt.scatter(x_coord[i], y_coord[i], c = '#FF0000', s = size)
+            plt.scatter(x_coord[i], y_coord[i], c = '#D41107', s = size)
         elif strength[i] < max and strength[i] >= (max - increment):
             plt.scatter(x_coord[i], y_coord[i], c = '#FF5D00', s = size)
         elif strength[i] < (max - increment) and strength[i] >= (max - (2*increment)):
@@ -36,28 +49,30 @@ def map(x, y, strength):
         elif strength[i] < (max - (4*increment)) and strength[i] >= (max - (5*increment)):
             plt.scatter(x_coord[i], y_coord[i], c = '#00FFFB', s = size)
         elif strength[i] < (max - (5*increment)) and strength[i] >= (max - (6*increment)):
-            plt.scatter(x_coord[i], y_coord[i], c = '#009BFF', s = size)
+            plt.scatter(x_coord[i], y_coord[i], c = '#03C0FC', s = size)
         elif strength[i] < (max - (6*increment)) and strength[i] >= (max - (7*increment)):
-            plt.scatter(x_coord[i], y_coord[i], c = '#0A34F5', s = size)
+            plt.scatter(x_coord[i], y_coord[i], c = '#1486EB', s = size)
         elif strength[i] < (max - (7*increment)) and strength[i] >= (max - (8*increment)):
-            plt.scatter(x_coord[i], y_coord[i], c = '#220E80', s = size)
+            plt.scatter(x_coord[i], y_coord[i], c = '#1C2EEA', s = size)
+        elif strength[i] < (max - (8*increment)):
+            plt.scatter(x_coord[i], y_coord[i], c = '#11056E', s = size)
         else:
-            print('data not in expected range')
+            print('data not in expected range', strength[i])
         # would this work because the color has to depend on the signal not x,y
         '''plt.scatter(x_coord[i], y_coord[i], cmap = 'coolwarm', s = size,
-        vmin = 0, vmax = 100)'''
-
-    # need to make these scalable functions that depend on the max and min of the data
-    plt.xticks(np.arange(0, 110, 10))
-    plt.yticks(np.arange(0, 110, 10))
+        vmin = 0, vmax = 100)'
+        '''
+    # scales the x and y axes with the max and min of the data
+    # maybe should just use x parameters for both so map isn't skewed?
+    plt.xticks(np.arange((np.min(x) - increment_x), (np.max(x) + increment_x), 10))
+    plt.yticks(np.arange((np.min(y) - increment_y), (np.max(y) + increment_y), 10))
     plt.show()
 
 
 if __name__ == '__main__':
-    add_point(0, 1, 2)
-    add_point(0, 1, 2)
 
-    strength = [0, 10, 20, 30, 40, 50, 60, 70, 225, 250]
+    # dummy lists until we get real data
+    strength = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
     x = [53, 98, 23, 5, 45, 21, 33, 76, 17, 59]
     y = [23, 87, 2, 47, 23, 90, 61, 33, 47, 12]
 
