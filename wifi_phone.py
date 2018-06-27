@@ -19,4 +19,4 @@ while (True):
             break
 
     print signal
-    time.sleep (2)
+    #time.sleep (2)
