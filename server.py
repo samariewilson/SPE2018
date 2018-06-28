@@ -72,9 +72,9 @@ class Ultrasonic_Avoidance:
         self.ECHO = echo
 
     def distance(self):
-        pulse_start = 0
-        pulse_end = 0
-        
+        #pulse_start = 0
+        #pulse_end = 0
+
         print "Distance Measurement In Progress"
 
         GPIO.setup(self.TRIG,GPIO.OUT)
@@ -99,7 +99,9 @@ class Ultrasonic_Avoidance:
         distance = pulse_duration * 17150
 
         distance = round(distance, 2)
-
+        print pulse_start
+        print pulse_end
+        print pulse_duration
         return distance
 
     def less_than(self, alarm_gate):
