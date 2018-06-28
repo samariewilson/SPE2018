@@ -27,9 +27,11 @@ class Ultrasonic_Avoidance:
 
         while GPIO.input(self.ECHO)==0:
           pulse_start = time.time()
+          print "darn"
 
         while GPIO.input(self.ECHO)==1:
           pulse_end = time.time()
+          print "bob"
 
         pulse_duration = pulse_end - pulse_start
 
