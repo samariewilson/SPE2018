@@ -90,9 +90,11 @@ class Ultrasonic_Avoidance:
 
         while GPIO.input(self.ECHO)==0:
           pulse_start = time.time()
+          return pulse_start
 
         while GPIO.input(self.ECHO)==1:
           pulse_end = time.time()
+          return pulse_end
 
         pulse_duration = pulse_end - pulse_start
 
@@ -100,8 +102,8 @@ class Ultrasonic_Avoidance:
 
         distance = round(distance, 2)
 
-        #return distance
-        return pulse_end
+        return distance
+
 
     def less_than(self, alarm_gate):
 		dis = self.distance()
