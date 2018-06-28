@@ -99,10 +99,9 @@ class Ultrasonic_Avoidance:
         distance = pulse_duration * 17150
 
         distance = round(distance, 2)
-        print pulse_start
-        print pulse_end
-        print pulse_duration
-        return distance
+
+        #return distance
+        return pulse_end
 
     def less_than(self, alarm_gate):
 		dis = self.distance()
