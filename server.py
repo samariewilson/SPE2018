@@ -72,8 +72,8 @@ class Ultrasonic_Avoidance:
         self.ECHO = echo
 
     def distance(self):
-        #pulse_start = 0
-        #pulse_end = 0
+        pulse_start = 0
+        pulse_end = 0
 
         print "Distance Measurement In Progress"
 
@@ -90,12 +90,11 @@ class Ultrasonic_Avoidance:
 
         while GPIO.input(self.ECHO)==0:
           pulse_start = time.time()
-          return pulse_start
+
 
         while GPIO.input(self.ECHO)==1:
           pulse_end = time.time()
-          return pulse_end
-
+          
         pulse_duration = pulse_end - pulse_start
 
         distance = pulse_duration * 17150
