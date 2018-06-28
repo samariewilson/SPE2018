@@ -20,10 +20,10 @@ class Ultrasonic_Avoidance:
         #time.sleep(2)
 
         GPIO.output(self.TRIG, True)
-        print "HI"
+
         time.sleep(0.00001)
         GPIO.output(self.TRIG, False)
-        print "HELLO"
+
 
         while GPIO.input(self.ECHO)==0:
           pulse_start = time.time()
@@ -31,7 +31,7 @@ class Ultrasonic_Avoidance:
 
         while GPIO.input(self.ECHO)==1:
           pulse_end = time.time()
-          print "bob"
+        
 
         pulse_duration = pulse_end - pulse_start
 
