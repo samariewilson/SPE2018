@@ -11,7 +11,7 @@ import RPi.GPIO as GPIO
 import sys
 
 picar.setup()
-fw = front_wheels.Front_Wheels(db='config', bus_number = 15)
+fw = front_wheels.Front_Wheels(db='config', channel = 15)
 bw = back_wheels.Back_Wheels(db='config')
 forward_speed = 80
 
