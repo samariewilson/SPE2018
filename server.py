@@ -51,12 +51,12 @@ def stop():
     bw.stop()
 
 def left_turn():
-    fw.turn(80)
+    fw.turn(79)
 
 def straight_turn():
-    fw.turn(90)
+    fw.turn(89)
 def right_turn():
-    fw.turn(120)
+    fw.turn(119)
 
     def handleConnected(self):
         print(self.address, 'connected')
