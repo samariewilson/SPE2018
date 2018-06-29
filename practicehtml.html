@@ -1,0 +1,63 @@
+<html>
+
+<script>
+
+  var isDown = false;
+  var isUp = false;
+  var isLeft = false;
+  var isRight = false;
+  var start  = Date.now();
+  var end = Date.now();
+
+  var socket = new WebSocket("ws://10.9.48.8:9876");
+  document.addEventListener("keydown", move, false);
+  function move(e) {
+    var keyCode = e.keyCode;
+    start  = Date.now()
+    if (!isDown && keyCode == 40){
+      socket.send("down");
+      isDown = true;
+
+    }
+    else if (!isLeft && keyCode == 37) {
+      socket.send("left");
+      isLeft = true;
+    }
+
+    else if (!isUp && keyCode == 38) {
+      socket.send("up");
+      isUp = true;
+
+    }
+    else if (!isRight && keyCode == 39){
+      socket.send("right");
+      isRight = true;
+    }
+  }
+
+    document.addEventListener("keyup", halt, false);
+    function halt(e) {
+      end = Date.now()
+      console.log((end - start)/1000;
+      console.log(e.keyCode);
+      var keyCode = e.keyCode;
+      if (keyCode == 40){
+        socket.send("stop");
+        isDown = false;
+      }
+      else if (keyCode == 38) {
+        socket.send("stop");
+        isUp = false;
+      }
+      else if (keyCode == 37 ) {
+        socket.send("straight");
+        isLeft = false;
+      }
+      else if (keyCode == 39) {
+        socket.send("straight");
+        isRight = false;
+      }
+    }
+</script>
+
+</html>
