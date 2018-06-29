@@ -51,12 +51,12 @@ def stop():
     bw.stop()
 
 def left_turn():
-    fw.turn(82)
+    fw.turn(79)
 
 def straight_turn():
-    fw.turn(102)
+    fw.turn(99)
 def right_turn():
-    fw.turn(122)
+    fw.turn(119)
 
     def handleConnected(self):
         print(self.address, 'connected')
@@ -72,8 +72,8 @@ class Ultrasonic_Avoidance:
         self.ECHO = echo
 
     def distance(self):
-        pulse_start = 0
-        pulse_end = 0
+        #pulse_start = 0
+        #pulse_end = 0
 
         print "Distance Measurement In Progress"
 
@@ -94,7 +94,7 @@ class Ultrasonic_Avoidance:
 
         while GPIO.input(self.ECHO)==1:
           pulse_end = time.time()
-          
+
         pulse_duration = pulse_end - pulse_start
 
         distance = pulse_duration * 17150
