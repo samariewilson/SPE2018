@@ -36,26 +36,31 @@ class SimpleEcho(WebSocket):
             bw.speed = forward_speed
             bw.backward()
             straight_turn()
-            print update_y(y_list)
+            print update_y()
         elif self.data == "down":
             bw.speed = forward_speed
             bw.forward()
             straight_turn()
-            print update_y(y_list)
+            print update_y()
         elif self.data == "right":
             right_turn()
             bw.speed = forward_speed
-            print update_x(x_list)
+            print update_x()
         elif self.data == "left":
             left_turn()
             bw.speed = forward_speed
-            print update_x(x_list)
+            print update_x()
         elif self.data == "straight":
             straight_turn()
-            print update_y(y_list)
+            print update_y()
         else:
             stop()
 
+    def handleConnected(self):
+        print(self.address, 'connected')
+
+    def handleClose(self):
+        print(self.address, 'closed')
 
 def stop():
     bw.stop()
@@ -80,7 +85,7 @@ def update_time():
         return seconds
 
 
-def update_x(x_list):
+def update_x():
     x = x_list
     speed = 0.5488             # meters per second at speed 90
     seconds = update_time()
@@ -94,7 +99,7 @@ def update_x(x_list):
         x.append(last_place + distance)
     return x
 
-def update_y(y_list):
+def update_y():
     y = y_list
     speed = 0.5488             # meters per second at speed 90
     seconds = update_time()
@@ -107,11 +112,7 @@ def update_y(y_list):
         y.append(last_place + distance)
     return y
 
-    def handleConnected(self):
-        print(self.address, 'connected')
 
-    def handleClose(self):
-        print(self.address, 'closed')
 
 
 
