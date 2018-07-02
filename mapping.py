@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from where_am_i import update_x
+from where_am_i import update_y
 
 # adds coordinates and strength to a 3 dimensional list
 # need to make these lists global so we can use the function
@@ -73,7 +75,10 @@ if __name__ == '__main__':
 
     # dummy lists until we get real data
     strength = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
-    x = [53, 98, 23, 5, 45, 21, 33, 76, 17, 59]
-    y = [23, 87, 2, 47, 23, 90, 61, 33, 47, 12]
+    x = [0]
+    y = [0]
+    for j in range(8):
+        x = update_x(x)
+        y = update_y(y)
 
     map(x, y, strength)
