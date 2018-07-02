@@ -68,12 +68,6 @@ def straight_turn():
 def right_turn():
     fw.turn(127)
 
-    def handleConnected(self):
-        print(self.address, 'connected')
-
-    def handleClose(self):
-        print(self.address, 'closed')
-
 def update_time():
     start = 0
     end = 0
@@ -112,6 +106,14 @@ def update_y(y_list):
     elif self.data == "up":   # if up arrow is pressed
         y.append(last_place + distance)
     return y
+
+    def handleConnected(self):
+        print(self.address, 'connected')
+
+    def handleClose(self):
+        print(self.address, 'closed')
+
+
 
 
 class Ultrasonic_Avoidance:
