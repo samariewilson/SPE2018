@@ -107,6 +107,7 @@ def update_y():
     print("test2")
     distance = speed * seconds
     last_place = y[-1]
+    print y
 
     if self.data == "down":     # if down arrow is pressed
         y.append(last_place - distance)
