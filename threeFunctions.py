@@ -34,6 +34,7 @@ class SimpleEcho(WebSocket):
 
         print(self.data, close_to_wall.value)
         if not close_to_wall.value and self.data == "up":
+            global start
             start = time.time()
             print ("start")
             print start
