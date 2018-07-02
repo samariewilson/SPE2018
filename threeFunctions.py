@@ -35,6 +35,7 @@ class SimpleEcho(WebSocket):
         print(self.data, close_to_wall.value)
         if not close_to_wall.value and self.data == "up":
             start = time.time()
+            print ("start")
             print start
             bw.speed = forward_speed
             bw.backward()
@@ -84,8 +85,8 @@ def update_x(direction):
     speed = 0.5488             # meters per second at speed 90
     end = time.time()
     seconds = (end - start)/1000
-    print end
-    print seconds
+    print "end", end
+    print "difference",seconds
     distance = speed * seconds
     last_place = x[-1]
     distance = np.sin(20) * distance
