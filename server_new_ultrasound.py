@@ -53,15 +53,19 @@ def stop():
 
 
 def left_turn():
+    angle = 82
     fw.turn(82)
-
+    return angle
 
 def straight_turn():
+    angle = 102
     fw.turn(102)
-
+    return angle
 
 def right_turn():
+    angle = 122
     fw.turn(122)
+    return angle
 
     def handleConnected(self):
         print(self.address, 'connected')
