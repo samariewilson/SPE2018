@@ -82,7 +82,7 @@ def update_x(direction):
     x = x_list
     speed = 0.5488             # meters per second at speed 90
     end = time.time()
-    seconds = end - start
+    seconds = (end - start)/1000
     print seconds
     distance = speed * seconds
     last_place = x[-1]
@@ -98,7 +98,7 @@ def update_y(direction):
     y = y_list
     speed = 0.5488             # meters per second at speed 90
     end = time.time()
-    seconds = end - start
+    seconds = (end - start)/1000
     print seconds
     distance = speed * seconds
     last_place = y[-1]
