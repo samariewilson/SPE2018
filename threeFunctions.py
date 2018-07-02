@@ -100,9 +100,11 @@ def update_x():
     return x
 
 def update_y():
+    print("test1")
     y = y_list
     speed = 0.5488             # meters per second at speed 90
     seconds = update_time()
+    print("test2")
     distance = speed * seconds
     last_place = y[-1]
 
@@ -110,6 +112,7 @@ def update_y():
         y.append(last_place - distance)
     elif self.data == "up":   # if up arrow is pressed
         y.append(last_place + distance)
+    print("test3")
     return y
 
 
