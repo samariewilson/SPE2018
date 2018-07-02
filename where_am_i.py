@@ -18,9 +18,8 @@ def update_x(x_list):
     seconds = update_time()
     distance = speed * seconds
     random = np.random.randint(2)
-    print random
     last_place = x[-1]
-    distance = np.sin(20) * distance
+    distance = np.sin(20) * distance   # x distance travelled
     if random == 0:     # if left arrow is pressed
         x.append(last_place - distance)
     elif random == 1:   # if right arrow is pressed
@@ -33,7 +32,6 @@ def update_y(y_list):
     seconds = update_time()
     distance = speed * seconds
     random = np.random.randint(2)
-    print random
     last_place = y[-1]
     if random == 0:     # if down arrow is pressed
         y.append(last_place - distance)
