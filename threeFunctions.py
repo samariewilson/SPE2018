@@ -22,6 +22,9 @@ port = 9876
 close_to_wall = Value ('b', False)
 emergency_backup = Value ('b', False)
 
+x_list = [0]
+y_list = [0]
+
 class SimpleEcho(WebSocket):
 
     def handleMessage(self):
@@ -33,18 +36,23 @@ class SimpleEcho(WebSocket):
             bw.speed = forward_speed
             bw.backward()
             straight_turn()
+            print update_y(y_list)
         elif self.data == "down":
             bw.speed = forward_speed
             bw.forward()
             straight_turn()
+            print update_y(y_list)
         elif self.data == "right":
             right_turn()
             bw.speed = forward_speed
+            print update_x(x_list)
         elif self.data == "left":
             left_turn()
             bw.speed = forward_speed
+            print update_x(x_list)
         elif self.data == "straight":
             straight_turn()
+            print update_y(y_list)
         else:
             stop()
 
@@ -76,6 +84,7 @@ def update_time():
         end = time.time()
         seconds = end - start
         return seconds
+
 
 def update_x(x_list):
     x = x_list
