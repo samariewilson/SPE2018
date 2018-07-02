@@ -85,8 +85,10 @@ def update_x(direction):
     speed = 0.5488             # meters per second at speed 90
     end = time.time()
     seconds = (end - start)/1000
-    print "end", end
-    print "difference",seconds
+    print "end"
+    print end
+    print "difference"
+    print seconds
     distance = speed * seconds
     last_place = x[-1]
     distance = np.sin(20) * distance
@@ -102,6 +104,9 @@ def update_y(direction):
     speed = 0.5488             # meters per second at speed 90
     end = time.time()
     seconds = (end - start)/1000
+    print "end"
+    print end
+    print "difference"
     print seconds
     distance = speed * seconds
     last_place = y[-1]
