@@ -22,11 +22,11 @@ port = 9876
 close_to_wall = Value ('b', False)
 emergency_backup = Value ('b', False)
 
-x_list = [0]
-y_list = [0]
+
 
 class SimpleEcho(WebSocket):
-
+x_list = [0]
+y_list = [0]
     def handleMessage(self):
         if emergency_backup.value:
             return
