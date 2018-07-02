@@ -104,6 +104,8 @@ def update_y(direction):
     speed = 0.5488             # meters per second at speed 90
     end = time.time()
     seconds = (end - start)/1000
+    print 'start2'
+    print start
     print "end"
     print end
     print "difference"
