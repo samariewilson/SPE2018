@@ -23,6 +23,7 @@ close_to_wall = Value ('b', False)
 emergency_backup = Value ('b', False)
 x_list = [0]
 y_list = [0]
+start = 0
 
 
 class SimpleEcho(WebSocket):
@@ -33,11 +34,13 @@ class SimpleEcho(WebSocket):
 
         print(self.data, close_to_wall.value)
         if not close_to_wall.value and self.data == "up":
+            start = time.time()
             bw.speed = forward_speed
             bw.backward()
             straight_turn()
             print update_y("up")
         elif self.data == "down":
+            start = time.time()
             bw.speed = forward_speed
             bw.forward()
             straight_turn()
@@ -74,10 +77,13 @@ def right_turn():
     fw.turn(127)
 
 
+
 def update_x(direction):
     x = x_list
     speed = 0.5488             # meters per second at speed 90
-    seconds = update_time()
+    end = time.time()
+    seconds = end - start
+    print seconds
     distance = speed * seconds
     last_place = x[-1]
     distance = np.sin(20) * distance
@@ -91,7 +97,9 @@ def update_x(direction):
 def update_y(direction):
     y = y_list
     speed = 0.5488             # meters per second at speed 90
-    seconds = update_time()
+    end = time.time()
+    seconds = end - start
+    print seconds
     distance = speed * seconds
     last_place = y[-1]
 
@@ -194,26 +202,14 @@ def distanceLoop():
             bw.stop()
             print "Read distance error."
 
-def update_time():
-    start = 0
-    end = 0
-    seconds = 0
-    for i in range(5):
-        start = time.time()
-        time.sleep(.5)
-        end = time.time()
-        seconds = end - start
-        return seconds
+
 
 
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
-p3 = Process(target = update_time)
-p3.start()
 p2.start()
 p1.start()
 p1.join()
 p2.join()
-p3.join()
