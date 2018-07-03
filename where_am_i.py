@@ -19,7 +19,7 @@ def update_x(x_list):
     distance = speed * seconds
     random = np.random.randint(2)
     last_place = x[-1]
-    distance = np.sin(20) * distance   # x distance travelled
+    distance = np.sin(20) * distance   # x distance traveled
     if random == 0:     # if left arrow is pressed
         x.append(last_place - distance)
     elif random == 1:   # if right arrow is pressed
