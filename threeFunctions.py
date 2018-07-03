@@ -59,7 +59,7 @@ class SimpleEcho(WebSocket):
         elif self.data == "straight":
             straight_turn()
             print update_y("straight")
-        elif self.data == "stop":
+        else:
             stop()
             end = time.time()
             difference = end - start
