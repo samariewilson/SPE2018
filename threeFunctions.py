@@ -60,13 +60,14 @@ class SimpleEcho(WebSocket):
             straight_turn()
             print update_y("straight")
         else:
-            stop()
+
             end = time.time()
             difference = end - start
             print "end"
             print end
             print "difference"
             print difference
+            stop()
 
     def handleConnected(self):
         print(self.address, 'connected')
