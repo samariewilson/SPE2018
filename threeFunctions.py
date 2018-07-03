@@ -59,8 +59,12 @@ class SimpleEcho(WebSocket):
         elif self.data == "straight":
             straight_turn()
             print update_y("straight")
-        else:
+        elif self.data == "stop":
             stop()
+            end = time.time()
+            difference = end - start
+            print end
+            print difference 
 
     def handleConnected(self):
         print(self.address, 'connected')
@@ -84,12 +88,6 @@ def right_turn():
 def update_x(direction):
     x = x_list
     speed = 0.5488             # meters per second at speed 90
-    end = time.time()
-    seconds = (end - start)
-    print "end"
-    print end
-    print "difference"
-    print seconds
     distance = speed * seconds
     last_place = x[-1]
     distance = np.sin(20) * distance
