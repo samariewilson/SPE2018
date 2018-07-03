@@ -105,12 +105,6 @@ def update_y(direction):
     speed = 0.5488             # meters per second at speed 90
     end = time.time()
     seconds = (end - start)
-    print 'start2'
-    print start
-    print "end"
-    print end
-    print "difference"
-    print seconds
     distance = speed * seconds
     last_place = y[-1]
 
