@@ -63,8 +63,10 @@ class SimpleEcho(WebSocket):
             stop()
             end = time.time()
             difference = end - start
+            print "end"
             print end
-            print difference 
+            print "difference"
+            print difference
 
     def handleConnected(self):
         print(self.address, 'connected')
