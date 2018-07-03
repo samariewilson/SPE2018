@@ -21,6 +21,10 @@ port = 9876
 
 close_to_wall = Value ('b', False)
 emergency_backup = Value ('b', False)
+x_list = [0]
+y_list = [0]
+start = 0
+
 
 class SimpleEcho(WebSocket):
 
@@ -30,24 +34,39 @@ class SimpleEcho(WebSocket):
 
         print(self.data, close_to_wall.value)
         if not close_to_wall.value and self.data == "up":
+            global start
+            start = time.time()
+            print ("start")
+            print start
             bw.speed = forward_speed
             bw.backward()
             straight_turn()
+            print update_y("up")
         elif self.data == "down":
+            start = time.time()
             bw.speed = forward_speed
             bw.forward()
             straight_turn()
+            print update_y("down")
         elif self.data == "right":
             right_turn()
             bw.speed = forward_speed
+            print update_x("right")
         elif self.data == "left":
             left_turn()
             bw.speed = forward_speed
+            print update_x("left")
         elif self.data == "straight":
             straight_turn()
+            print update_y("straight")
         else:
             stop()
 
+    def handleConnected(self):
+        print(self.address, 'connected')
+
+    def handleClose(self):
+        print(self.address, 'closed')
 
 def stop():
     bw.stop()
@@ -60,50 +79,47 @@ def straight_turn():
 def right_turn():
     fw.turn(127)
 
-    def handleConnected(self):
-        print(self.address, 'connected')
 
-    def handleClose(self):
-        print(self.address, 'closed')
 
-def update_time():
-    start = 0
-    end = 0
-    seconds = 0
-    for i in range(5):
-        start = time.time()
-        time.sleep(.5)
-        end = time.time()
-        seconds = end - start
-        return seconds
-
-def update_x(x_list):
+def update_x(direction):
     x = x_list
     speed = 0.5488             # meters per second at speed 90
-    seconds = update_time()
+    end = time.time()
+    seconds = (end - start)
+    print "end"
+    print end
+    print "difference"
+    print seconds
     distance = speed * seconds
     last_place = x[-1]
     distance = np.sin(20) * distance
 
-    if self.data == "left":     # if left arrow is pressed
+    if direction == "left":     # if left arrow is pressed
         x.append(last_place - distance)
-    elif self.data == "right":   # if right arrow is pressed
+    elif direction == "right":   # if right arrow is pressed
         x.append(last_place + distance)
     return x
 
-def update_y(y_list):
+def update_y(direction):
     y = y_list
     speed = 0.5488             # meters per second at speed 90
-    seconds = update_time()
+    end = time.time()
+    seconds = (end - start)
+    print 'start2'
+    print start
+    print "end"
+    print end
+    print "difference"
+    print seconds
     distance = speed * seconds
     last_place = y[-1]
 
-    if self.data == "down":     # if down arrow is pressed
+    if direction == "down":     # if down arrow is pressed
         y.append(last_place - distance)
-    elif self.data == "up":   # if up arrow is pressed
+    elif direction == "up":   # if up arrow is pressed
         y.append(last_place + distance)
-    return y
 
+    return y
 
 class Ultrasonic_Avoidance:
 
@@ -161,7 +177,6 @@ class Ultrasonic_Avoidance:
 # Responses for status and distance
 def distanceLoop():
 
-
     UA = Ultrasonic_Avoidance(20,16)
     threshold = 30
     while True:
@@ -199,9 +214,12 @@ def distanceLoop():
             print "Read distance error."
 
 
+
+
+
 server = SimpleWebSocketServer('', port, SimpleEcho)
-p1 = Process(target=server.serveforever)
-p2 = Process(target=distanceLoop)
+p1 = Process(target = server.serveforever)
+p2 = Process(target = distanceLoop)
 p2.start()
 p1.start()
 p1.join()
