@@ -14,7 +14,6 @@ picar.setup()
 fw = front_wheels.Front_Wheels(db='config')
 bw = back_wheels.Back_Wheels(db='config')
 forward_speed = 90
-start = 0
 
 port = 9876
 
@@ -29,10 +28,6 @@ class SimpleEcho(WebSocket):
 
         print(self.data, close_to_wall.value)
         if not close_to_wall.value and self.data == "up":
-            global start
-            start = time.time()
-            print ("start")
-            print start
             bw.speed = forward_speed
             bw.backward()
             straight_turn()
@@ -49,12 +44,6 @@ class SimpleEcho(WebSocket):
         elif self.data == "straight":
             straight_turn()
         else:
-            end = time.time()
-            difference = end - start
-            print "end"
-            print end
-            print "difference"
-            print difference
             stop()
 
 
