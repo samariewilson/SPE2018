@@ -81,7 +81,7 @@ class SimpleEcho(WebSocket):
             print difference
             stop()
 
-            plt.waitforbuttonpress()
+        #plt.waitforbuttonpress()
 
     def handleConnected(self):
         print(self.address, 'connected')
