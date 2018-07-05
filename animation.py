@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from where_am_i import update_x
-from where_am_i import update_y
+from threeFunctions import update_x
+from threeFunctions import update_y
 
 plt.ion()
 fig, ax = plt.subplots()
