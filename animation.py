@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 import numpy as np
 from threeFunctions import update_x
 from threeFunctions import update_y
