@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('TKAgg')
 import matplotlib.pyplot as plt
 #from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 import numpy as np
