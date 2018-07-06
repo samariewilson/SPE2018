@@ -31,6 +31,6 @@ while True:
 
     start_new_thread(threaded_client,(conn,))
 
-conn, addr = s.accept()
+#conn, addr = s.accept()
 
-print('connected to: ' + addr[0] + ':' + str(addr[1]))
+#print('connected to: ' + addr[0] + ':' + str(addr[1]))
