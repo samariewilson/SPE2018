@@ -1,7 +1,10 @@
+#import matplotlib
+#matplotlib.use('TKAgg')
 import matplotlib.pyplot as plt
+#from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 import numpy as np
-from threeFunctions import update_x
-from threeFunctions import update_y
+from where_am_i import update_x
+from where_am_i import update_y
 
 plt.ion()
 fig, ax = plt.subplots()
