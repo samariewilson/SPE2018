@@ -1,6 +1,6 @@
 import socket
 import sys
-from _thread import *
+#from _thread import *
 import threading
 
 host = ''
