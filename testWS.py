@@ -14,7 +14,7 @@ except socket.error as e:
 s.listen(5)
 print('Waiting for a connection.')
 def threaded_client(conn):
-    conn.send(str.encode('Welcome, type your info\n'))
+    conn.send(str.encode('Welcome, type your stuff\n'))
 
     while True:
         data = conn.recv(2048)
