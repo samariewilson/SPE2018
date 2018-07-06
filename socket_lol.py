@@ -1,6 +1,6 @@
 import socket
 import sys
-import thread
+from _thread import *
 
 host = ''
 port = 9876
