@@ -3,6 +3,7 @@ from multiprocessing import Process, Value
 from picar import back_wheels
 from picar import front_wheels
 
+import json
 import picar
 import curses
 import time
