@@ -25,16 +25,22 @@ x_list = [0]
 y_list = [0]
 start = 0
 start2 = 0
+end = 0
+end2 = 0
 
 class SimpleEcho(WebSocket):
 
     def handleMessage(self):
+        global start
+        global start2
+        global end
+        global end2
         if emergency_backup.value:
             return
 
         print(self.data, close_to_wall.value)
         if not close_to_wall.value and self.data == "up":
-            global start
+
             start = time.time()
             print ("start")
             print start
@@ -62,7 +68,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
-            print update_x("right")
+            print update_x("right",difference)
             fw.straight_turn()
         elif self.data == "stopRight":
             end2 = time.time()
@@ -71,7 +77,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
-            print update_x("right")
+            print update_x("right", difference)
             fw.straight_turn()
         elif self.data == "stopUp":
             end = time.time()
@@ -80,7 +86,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
-            print update_y("up")
+            print update_y("up", difference)
             stop()
         elif self.data == "stopDown":
             end = time.time()
@@ -89,6 +95,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
+            print update_y("down", difference)
             stop()
 
     def handleConnected(self):
@@ -110,7 +117,7 @@ def right_turn():
 
 
 
-def update_x(direction):
+def update_x(direction, seconds):
     x = x_list
     speed = 0.5488             # meters per second at speed 90
     distance = speed * seconds
