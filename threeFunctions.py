@@ -68,7 +68,7 @@ class SimpleEcho(WebSocket):
             print end2
             print "difference"
             print difference
-            print update_x("left",difference)
+            print update_x("left", difference, self)
             straight_turn()
         elif self.data == "stopRight":
             end2 = time.time()
@@ -77,7 +77,7 @@ class SimpleEcho(WebSocket):
             print end2
             print "difference"
             print difference
-            print update_x("right", difference)
+            print update_x("right", difference, self)
             straight_turn()
         elif self.data == "stopUp":
             end = time.time()
@@ -86,7 +86,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
-            print update_y("up", difference)
+            print update_y("up", difference, self)
             stop()
         elif self.data == "stopDown":
             end = time.time()
@@ -95,7 +95,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
-            print update_y("down", difference)
+            print update_y("down", difference, self)
             stop()
 
     def handleConnected(self):
@@ -117,7 +117,7 @@ def right_turn():
 
 
 
-def update_x(direction, seconds):
+def update_x(direction, seconds, socket):
     x = x_list
     speed = 0.5488             # meters per second at speed 90
     distance = speed * seconds
@@ -128,9 +128,10 @@ def update_x(direction, seconds):
         x.append(last_place - distance)
     elif direction == "right":   # if right arrow is pressed
         x.append(last_place + distance)
+    socket.sendMessage(json.dumps(x))
     return x
 
-def update_y(direction, seconds):
+def update_y(direction, seconds, socket):
     y = y_list
     speed = 0.5488             # meters per second at speed 90
     #seconds = (end - start)
@@ -141,7 +142,7 @@ def update_y(direction, seconds):
         y.append(last_place - distance)
     elif direction == "up":   # if up arrow is pressed
         y.append(last_place + distance)
-
+    socket.sendMessage(json.dumps(y))
     return y
 
 class Ultrasonic_Avoidance(object):
