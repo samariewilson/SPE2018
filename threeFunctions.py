@@ -65,16 +65,16 @@ class SimpleEcho(WebSocket):
             end2 = time.time()
             difference = end2 - start2
             print "end"
-            print end
+            print end2
             print "difference"
             print difference
-            print update_x("right",difference)
+            print update_x("left",difference)
             fw.straight_turn()
         elif self.data == "stopRight":
             end2 = time.time()
             difference = end2 - start2
             print "end"
-            print end
+            print end2
             print "difference"
             print difference
             print update_x("right", difference)
