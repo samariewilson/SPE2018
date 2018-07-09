@@ -21,7 +21,7 @@ def threaded_client(conn):
         reply = 'Server output: '+ data.decode('utf-8')
         if not data:
             break
-        conn.sendall(str.encode(reply))
+        conn.sendall(str.encode(str(reply)))
     conn.close()
 
 
