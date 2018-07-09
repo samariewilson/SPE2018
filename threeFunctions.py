@@ -24,7 +24,7 @@ emergency_backup = Value ('b', False)
 x_list = [0]
 y_list = [0]
 start = 0
-
+start2 = 0
 
 class SimpleEcho(WebSocket):
 
@@ -41,26 +41,48 @@ class SimpleEcho(WebSocket):
             bw.speed = forward_speed
             bw.backward()
             straight_turn()
-            print update_y("up")
+
         elif self.data == "down":
             start = time.time()
             bw.speed = forward_speed
             bw.forward()
             straight_turn()
-            print update_y("down")
-        elif self.data == "right":
-            right_turn()
-            bw.speed = forward_speed
-            print update_x("right")
-        elif self.data == "left":
-            left_turn()
-            bw.speed = forward_speed
-            print update_x("left")
-        elif self.data == "straight":
-            straight_turn()
-            print update_y("straight")
-        else:
 
+        elif self.data == "right":
+            start2 = time.time()
+            right_turn()
+
+        elif self.data == "left":
+            start2 = time.time()
+            left_turn()
+        elif self.data == "stopLeft":
+            end2 = time.time()
+            difference = end2 - start2
+            print "end"
+            print end
+            print "difference"
+            print difference
+            print update_x("right")
+            fw.straight_turn()
+        elif self.data == "stopRight":
+            end2 = time.time()
+            difference = end2 - start2
+            print "end"
+            print end
+            print "difference"
+            print difference
+            print update_x("right")
+            fw.straight_turn()
+        elif self.data == "stopUp":
+            end = time.time()
+            difference = end - start
+            print "end"
+            print end
+            print "difference"
+            print difference
+            fw.straight_turn()
+            print update_y("up")
+        elif self.data == "stopDown":
             end = time.time()
             difference = end - start
             print "end"
@@ -104,7 +126,6 @@ def update_x(direction):
 def update_y(direction):
     y = y_list
     speed = 0.5488             # meters per second at speed 90
-    end = time.time()
     seconds = (end - start)
     distance = speed * seconds
     last_place = y[-1]
