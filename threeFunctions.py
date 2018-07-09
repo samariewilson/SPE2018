@@ -27,7 +27,7 @@ start = 0
 start2 = 0
 end = 0
 end2 = 0
-
+clients = []
 class SimpleEcho(WebSocket):
     def handleMessage(self):
         global start
@@ -85,7 +85,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
-            self.sendMessage(self.data)
+            clients[0].sendMessage(self.data)
             print update_y("up", difference, self)
             stop()
         elif self.data == "stopDown":
@@ -100,6 +100,7 @@ class SimpleEcho(WebSocket):
 
     def handleConnected(self):
         print(self.address, 'connected')
+        clients.append(self)
 
     def handleClose(self):
         print(self.address, 'closed')
