@@ -1,6 +1,6 @@
 import socket
 import sys
-from thread import *
+from _thread import *
 
 host = ''
 port = 5555
@@ -21,8 +21,7 @@ def threaded_client(conn):
         reply = 'Server output: '+ data.decode('utf-8')
         if not data:
             break
-        #conn.sendall(str.encode(reply))
-        conn.sendall(reply.encode('ascii'))
+        conn.sendall(str.encode(reply))
     conn.close()
 
 
