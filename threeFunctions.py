@@ -29,7 +29,6 @@ end = 0
 end2 = 0
 
 class SimpleEcho(WebSocket):
-
     def handleMessage(self):
         global start
         global start2
@@ -86,6 +85,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
+            self.sendMessage(self.data)
             print update_y("up", difference, self)
             stop()
         elif self.data == "stopDown":
