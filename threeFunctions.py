@@ -122,7 +122,7 @@ def update_x(direction, seconds):
     speed = 0.5488             # meters per second at speed 90
     distance = speed * seconds
     last_place = x[-1]
-    distance = np.sin(20) * distance
+    #distance = np.sin(20) * distance
 
     if direction == "left":     # if left arrow is pressed
         x.append(last_place - distance)
