@@ -213,7 +213,7 @@ def distanceLoop():
 
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
-p1 = Process(target = server.serveforever)
+p1 = Process(target = server.serveforever())
 p2 = Process(target = distanceLoop)
 p2.start()
 p1.start()
