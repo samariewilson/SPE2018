@@ -80,8 +80,8 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
-            fw.straight_turn()
             print update_y("up")
+            stop()
         elif self.data == "stopDown":
             end = time.time()
             difference = end - start
