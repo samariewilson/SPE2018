@@ -35,7 +35,6 @@ class SimpleEcho(WebSocket):
         global start2
         global end
         global end2
-        self.sendMessage(self.data)
         if emergency_backup.value:
             return
 
