@@ -130,10 +130,10 @@ def update_x(direction, seconds):
         x.append(last_place + distance)
     return x
 
-def update_y(direction):
+def update_y(direction, seconds):
     y = y_list
     speed = 0.5488             # meters per second at speed 90
-    seconds = (end - start)
+    #seconds = (end - start)
     distance = speed * seconds
     last_place = y[-1]
 
