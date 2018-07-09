@@ -69,7 +69,7 @@ class SimpleEcho(WebSocket):
             print "difference"
             print difference
             print update_x("left",difference)
-            fw.straight_turn()
+            straight_turn()
         elif self.data == "stopRight":
             end2 = time.time()
             difference = end2 - start2
@@ -78,7 +78,7 @@ class SimpleEcho(WebSocket):
             print "difference"
             print difference
             print update_x("right", difference)
-            fw.straight_turn()
+            straight_turn()
         elif self.data == "stopUp":
             end = time.time()
             difference = end - start
@@ -122,7 +122,7 @@ def update_x(direction, seconds):
     speed = 0.5488             # meters per second at speed 90
     distance = speed * seconds
     last_place = x[-1]
-    #distance = np.sin(20) * distance
+    distance = np.sin(20) * distance
 
     if direction == "left":     # if left arrow is pressed
         x.append(last_place - distance)
