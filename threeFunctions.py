@@ -144,48 +144,58 @@ def update_y(direction, seconds):
 
     return y
 
-class Ultrasonic_Avoidance:
+class Ultrasonic_Avoidance(object):
+	timeout = 0.05
 
-    def __init__(self, trig, echo):
-        GPIO.setmode(GPIO.BCM)
-        self.TRIG = trig
-        self.ECHO = echo
+	def __init__(self, channel):
+		self.channel = channel
+		GPIO.setmode(GPIO.BCM)
 
-    def distance(self):
-        #pulse_start = 0
-        #pulse_end = 0
+	def distance(self):
+		pulse_end = 0
+		pulse_start = 0
+		GPIO.setup(self.channel,GPIO.OUT)
+		GPIO.output(self.channel, False)
+		time.sleep(0.01)
+		GPIO.output(self.channel, True)
+		time.sleep(0.00001)
+		GPIO.output(self.channel, False)
+		GPIO.setup(self.channel,GPIO.IN)
 
-        print "Distance Measurement In Progress"
+		timeout_start = time.time()
+		while GPIO.input(self.channel)==0:
+			pulse_start = time.time()
+			if pulse_start - timeout_start > self.timeout:
+				return -1
+		while GPIO.input(self.channel)==1:
+			pulse_end = time.time()
+			if pulse_start - timeout_start > self.timeout:
+				return -1
 
-        GPIO.setup(self.TRIG,GPIO.OUT)
-        GPIO.setup(self.ECHO,GPIO.IN)
+		if pulse_start != 0 and pulse_end != 0:
+			pulse_duration = pulse_end - pulse_start
+			distance = pulse_duration * 100 * 343.0 /2
+			distance = int(distance)
+			#print 'start = %s'%pulse_start,
+			#print 'end = %s'%pulse_end
+			if distance >= 0:
+				return distance
+			else:
+				return -1
+		else :
+			#print 'start = %s'%pulse_start,
+			#print 'end = %s'%pulse_end
+			return -1
 
-        GPIO.output(self.TRIG, False)
-        print "Waiting For Sensor To Settle"
-        #time.sleep(2)
-
-        GPIO.output(self.TRIG, True)
-        time.sleep(0.00001)
-        GPIO.output(self.TRIG, False)
-
-        while GPIO.input(self.ECHO)==0:
-          pulse_start = time.time()
-
-
-        while GPIO.input(self.ECHO)==1:
-          pulse_end = time.time()
-
-        pulse_duration = pulse_end - pulse_start
-
-        distance = pulse_duration * 17150
-
-        distance = round(distance, 2)
-
-        return distance
-
-
-    def less_than(self, alarm_gate):
-		dis = self.distance()
+	def get_distance(self, mount = 5):
+		sum = 0
+		for i in range(mount):
+			a = self.distance()
+			#print '    %s' % a
+			sum += a
+		return int(sum/mount)
+	def less_than(self, alarm_gate):
+		dis = self.get_distance()
 		status = 0
 		if dis >=0 and dis <= alarm_gate:
 			status = 1
@@ -200,10 +210,10 @@ class Ultrasonic_Avoidance:
 # Responses for status and distance
 def distanceLoop():
 
-    UA = Ultrasonic_Avoidance(20,16)
+    UA = Ultrasonic_Avoidance(20)
     threshold = 30
     while True:
-        distance = UA.distance()
+        distance = UA.get_distance()
         status = UA.less_than(threshold)
         print(distance)
         #print(status)
