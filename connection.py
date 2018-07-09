@@ -1,6 +1,6 @@
 import socket
 import sys
-from _thread import *
+from thread import *
 
 host = ''
 port = 5555
