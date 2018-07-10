@@ -128,7 +128,7 @@ def update_x(direction, seconds, socket):
         x.append(last_place - distance)
     elif direction == "right":   # if right arrow is pressed
         x.append(last_place + distance)
-    socket.sendMessage(json.dumps(x))
+    socket.sendMessage(json.dumps(zip(x,y))
     return x
 
 def update_y(direction, seconds, socket):
@@ -252,7 +252,6 @@ def distanceLoop():
 
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
-server.serveforever()
 p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
 p2.start()
