@@ -154,7 +154,7 @@ def update_y(direction, seconds, socket):
     #y_list = y
     print ("yZIP")
     print (list(zip(x_list,y_list)))
-    socket.sendMessage(json.dumps(list(zip(x_list,y_list)))
+    socket.sendMessage(json.dumps(list(zip(x_list,y_list))))
     return y_list
 
 class Ultrasonic_Avoidance(object):
