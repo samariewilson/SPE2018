@@ -120,40 +120,40 @@ def right_turn():
 def update_x(direction, seconds, socket):
     global x_list
     global y_list
-    x = x_list
+#    x = x_list
     speed = 0.5488             # meters per second at speed 90
     distance = speed * seconds
-    last_place = x[-1]
+    last_place = x_list[-1]
     distance = np.sin(20) * distance
 
     if direction == "left":     # if left arrow is pressed
         x.append(last_place - distance)
     elif direction == "right":   # if right arrow is pressed
         x.append(last_place + distance)
-    x_list =  x
+    #x_list =  x
     print ("ZIP")
     print (zip(x_list,y_list))
     socket.sendMessage(json.dumps(x))
-    return x
+    return x_list
 
 def update_y(direction, seconds, socket):
     global y_list
     global x_list
-    y = y_list
+    #y = y_list
     speed = 0.5488             # meters per second at speed 90
     #seconds = (end - start)
     distance = speed * seconds
-    last_place = y[-1]
+    last_place = y_list[-1]
 
     if direction == "down":     # if down arrow is pressed
         y.append(last_place - distance)
     elif direction == "up":   # if up arrow is pressed
         y.append(last_place + distance)
-    y_list = y
+    #y_list = y
     print ("yZIP")
     print (list(zip(x_list,y_list)))
     socket.sendMessage(json.dumps(y))
-    return y
+    return y_list
 
 class Ultrasonic_Avoidance(object):
 	timeout = 0.05
