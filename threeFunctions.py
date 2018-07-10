@@ -144,6 +144,8 @@ def update_y(direction, seconds, socket):
         y.append(last_place - distance)
     elif direction == "up":   # if up arrow is pressed
         y.append(last_place + distance)
+    print ("yZIP")
+    print (zip(x,y))
     socket.sendMessage(json.dumps(y))
     return y
 
