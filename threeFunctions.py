@@ -133,7 +133,7 @@ def update_x(direction, seconds, socket):
     #x_list =  x
     print ("ZIP")
     print (zip(x_list,y_list))
-    socket.sendMessage(json.dumps(x_list))
+    socket.sendMessage(json.dumps(list(zip(x_list,y_list))))
     return x_list
 
 def update_y(direction, seconds, socket):
@@ -144,6 +144,8 @@ def update_y(direction, seconds, socket):
     #seconds = (end - start)
     distance = speed * seconds
     last_place = y_list[-1]
+    x_list.append(x_list[-1])
+
 
     if direction == "down":     # if down arrow is pressed
         y_list.append(last_place - distance)
@@ -152,7 +154,7 @@ def update_y(direction, seconds, socket):
     #y_list = y
     print ("yZIP")
     print (list(zip(x_list,y_list)))
-    socket.sendMessage(json.dumps(y_list))
+    socket.sendMessage(json.dumps(list(zip(x_list,y_list)))
     return y_list
 
 class Ultrasonic_Avoidance(object):
