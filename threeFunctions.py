@@ -119,6 +119,7 @@ def right_turn():
 
 def update_x(direction, seconds, socket):
     global x_list
+    global y_list
     x = x_list
     speed = 0.5488             # meters per second at speed 90
     distance = speed * seconds
@@ -137,6 +138,7 @@ def update_x(direction, seconds, socket):
 
 def update_y(direction, seconds, socket):
     global y_list
+    global x_list
     y = y_list
     speed = 0.5488             # meters per second at speed 90
     #seconds = (end - start)
