@@ -129,7 +129,7 @@ def update_x(direction, seconds, socket):
     elif direction == "right":   # if right arrow is pressed
         x.append(last_place + distance)
     socket.sendMessage(json.dumps(zip(x,y))
-    return x
+    #eturn x
 
 def update_y(direction, seconds, socket):
     y = y_list
