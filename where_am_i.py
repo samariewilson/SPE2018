@@ -61,26 +61,34 @@ def find_direction():                     # returns cardinal direction of car
     seconds = update_time()               # how long the car has been turning
 
     if seconds >= 9 or seconds < 0.6:     # directions based on the circle time
-        return "north"
+        north(x, y)
+        return "north", x, y
     elif seconds >= 0.6 and seconds < 1.8:
-        return "northeast"
+        northeast(x, y)
+        return "northeast", x, y
     elif seconds >= 1.8 and seconds < 3:
-        return "east"
+        east(x, y)
+        return "east", x, y
     elif seconds >= 3 and seconds < 4.2:
-        return "southeast"
+        southeast(x, y)
+        return "southeast", x, y
     elif seconds >= 4.2 and seconds < 5.4:
-        return "south"
+        south(x, y)
+        return "south", x, y
     elif seconds >= 5.4 and seconds < 6.6:
-        return "southwest"
+        southwest(x, y)
+        return "southwest", x, y
     elif seconds >= 6.6 and seconds < 7.8:
-        return "west"
+        west(x, y)
+        return "west", x, y
     elif seconds >= 7.8 and seconds < 9:
-        return "northwest"
+        northwest(x, y)
+        return "northwest", x, y
 
 
 def north(x_list, y_list):
     x = x_list
-    x.append(x[-1])                       # keeps x vaule the same
+    x.append(x[-1])                       # keeps x value the same
 
     y = y_list
     speed = 0.5488                        # meters per second at speed 90
@@ -92,7 +100,7 @@ def north(x_list, y_list):
 
 def south(x_list, y_list):
     x = x_list
-    x.append(x[-1])                       # keeps x vaule the same
+    x.append(x[-1])                       # keeps x value the same
 
     y = y_list
     speed = 0.5488                        # meters per second at speed 90
@@ -179,13 +187,8 @@ def southwest(x_list, y_list):
 
     return x, y
 
-
 if __name__ == '__main__':
     x = [1, 2, 3, 4]
     y = [1, 2, 3, 4]
 
-    print(update_time())
-    print(update_x(x))
-    print(update_y(y))
     print(find_direction())
-    print(east(x, y))
