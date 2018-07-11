@@ -11,6 +11,8 @@ import RPi.GPIO as GPIO
 import time
 import numpy as np
 
+import wifi_phone as wi
+
 import sys
 
 picar.setup()
@@ -24,6 +26,7 @@ close_to_wall = Value ('b', False)
 emergency_backup = Value ('b', False)
 x_list = [0]
 y_list = [0]
+strength_list = [0]
 start = 0
 start2 = 0
 end = 0
@@ -120,39 +123,54 @@ def right_turn():
 def update_x(direction, seconds, socket):
     global x_list
     global y_list
+    global strength_list
 #    x = x_list
     speed = 0.5488             # meters per second at speed 90
     distance = speed * seconds
     last_place = x_list[-1]
     distance = np.sin(20) * distance
+    y_list.append(y_list[-1])
+
+    sig = wi.strength()        # get wifi strength
+    strength_list.append(sig)
 
     if direction == "left":     # if left arrow is pressed
         x_list.append(last_place - distance)
     elif direction == "right":   # if right arrow is pressed
         x_list.append(last_place + distance)
     #x_list =  x
-    print ("ZIP")
-    print (zip(x_list,y_list))
-    socket.sendMessage(json.dumps(x_list))
+    # print (zip(x_list,y_list, strength_list))
+
+    threeList = list(zip(x_list,y_list, strength_list))
+
+    socket.sendMessage(json.dumps(threeList))
     return x_list
 
 def update_y(direction, seconds, socket):
     global y_list
     global x_list
+    global strength_list
     #y = y_list
     speed = 0.5488             # meters per second at speed 90
     #seconds = (end - start)
     distance = speed * seconds
     last_place = y_list[-1]
+    distance = np.cos(20) * distance
+    x_list.append(x_list[-1])
+
+    sig = wi.strength()        # get wifi strength
+    strength_list.append(sig)
 
     if direction == "down":     # if down arrow is pressed
         y_list.append(last_place - distance)
     elif direction == "up":   # if up arrow is pressed
         y_list.append(last_place + distance)
     #y_list = y
-    print ("yZIP")
-    print (list(zip(x_list,y_list)))
-    socket.sendMessage(json.dumps(y_list))
+
+#    print (list(zip(x_list,y_list, strength_list)))
+    threeList = list(zip(x_list,y_list, strength_list))
+
+    socket.sendMessage(json.dumps(threeList))
     return y_list
 
 class Ultrasonic_Avoidance(object):
