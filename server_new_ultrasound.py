@@ -47,10 +47,8 @@ class SimpleEcho(WebSocket):
         else:
             stop()
 
-
 def stop():
     bw.stop()
-
 
 def left_turn():
     angle = 82
