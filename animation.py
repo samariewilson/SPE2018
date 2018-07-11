@@ -10,7 +10,7 @@ from colors import get_strength
 
 plt.ion()
 fig, ax = plt.subplots()
-x, y, strength = [0],[0],[10, 20, 30, 40, 50, 60, 70, 80, 90]
+x, y, strength = [0],[0],[10, 20, 30, 40, 50, 60, 70, 80]
 
 sc = ax.scatter(x,y, c = colors(get_strength()))
 plt.xlim(-10,10)
