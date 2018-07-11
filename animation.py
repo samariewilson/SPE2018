@@ -1,4 +1,4 @@
-from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
+#from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 
 import matplotlib
 matplotlib.use('TKAgg')
@@ -12,7 +12,7 @@ from colors import get_strength
 
 port = 1234
 
-class SimpleEcho(WebSocket):
+'''class SimpleEcho(WebSocket):
     def handleMessage(self):
         threeList = json.loads(self.data)
         print threeList
@@ -21,7 +21,7 @@ class SimpleEcho(WebSocket):
         print(self.address, 'connected')
 
     def handleClose(self):
-        print(self.address, 'closed')
+        print(self.address, 'closed')'''
 
 plt.ion()
 fig, ax = plt.subplots()
@@ -36,7 +36,7 @@ plt.draw()
 for i in range(1000):
     update_x(x)
     update_y(y)
-    get_strength()
+    
     sc.set_offsets(np.c_[x,y])
     fig.canvas.draw_idle()
     plt.pause(0.1)
