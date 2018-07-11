@@ -1,5 +1,9 @@
 import numpy as np
+import matplotlib
+matplotlib.use('TKAgg')
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import time
 from where_am_i import update_x
 from where_am_i import update_y
 
@@ -18,6 +22,7 @@ def add_point(x, y, strength):
 def data_range(x):
     range = max(x) - min(x)
     return range
+
 # maps the x,y coordinates to a scatter plot with different colors depending
 # on signal strength
 def map(x, y, strength):
@@ -33,7 +38,7 @@ def map(x, y, strength):
     increment_x = data_range(x) / 10         # evenly splits x,y lists for
     increment_y = data_range(y) / 10         # graphing
 
-    size = 1000                              # size of markers
+    size = 500                               # size of markers
 
     # determines how strong signal is at each point and plots that point with
     # the corresponding color (strong signal = red, weak signal = blue)
@@ -70,15 +75,12 @@ def map(x, y, strength):
     plt.yticks(np.arange((np.min(y) - increment_y), (np.max(y) + increment_y), 10))
     plt.show()
 
-
 if __name__ == '__main__':
-
     # dummy lists until we get real data
     strength = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90]
     x = [0]
     y = [0]
-    for j in range(8):
+    for i in range(2):   # while true loop eventally
         x = update_x(x)
         y = update_y(y)
-
-    map(x, y, strength)
+        map(x, y, strength)
