@@ -1,3 +1,5 @@
+from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
+
 import matplotlib
 matplotlib.use('TKAgg')
 import matplotlib.pyplot as plt
@@ -7,6 +9,19 @@ from where_am_i import update_y
 from where_am_i import southwest
 from colors import colors
 from colors import get_strength
+
+port = 1234
+
+class SimpleEcho(WebSocket):
+    def handleMessage(self):
+        threeList = json.loads(self.data)
+        print threeList
+
+    def handleConnected(self):
+        print(self.address, 'connected')
+
+    def handleClose(self):
+        print(self.address, 'closed')
 
 plt.ion()
 fig, ax = plt.subplots()
