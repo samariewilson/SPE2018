@@ -6,14 +6,18 @@
   var isUp = false;
   var isLeft = false;
   var isRight = false;
-  var start  = Date.now();
-  var end = Date.now();
+
+  var threeList = NULL;
+
 
   var socket = new WebSocket("ws://10.9.48.8:9876");
+  var socketMap = new WebSocket("ws://10.9.48.8:1234");
+
+  // send message when the key is pressed
   document.addEventListener("keydown", move, false);
   function move(e) {
     var keyCode = e.keyCode;
-    start  = Date.now()
+
     if (!isDown && keyCode == 40){
       socket.send("down");
       isDown = true;
@@ -22,6 +26,7 @@
     else if (!isLeft && keyCode == 37) {
       socket.send("left");
       isLeft = true;
+
     }
 
     else if (!isUp && keyCode == 38) {
@@ -35,29 +40,50 @@
     }
   }
 
+    // when you let go of the key
     document.addEventListener("keyup", halt, false);
     function halt(e) {
+<<<<<<< HEAD
       end = Date.now()
       console.log((end - start)/1000);
+=======
+
+>>>>>>> 77c3e4c72fa82aea645db6a65d037daf7af03575
       console.log(e.keyCode);
       var keyCode = e.keyCode;
       if (keyCode == 40){
-        socket.send("stop");
+        socket.send("stopDown");
         isDown = false;
+
       }
       else if (keyCode == 38) {
-        socket.send("stop");
+        socket.send("stopUp");
         isUp = false;
       }
       else if (keyCode == 37 ) {
-        socket.send("straight");
+        socket.send("stopLeft");
         isLeft = false;
       }
       else if (keyCode == 39) {
-        socket.send("straight");
+        socket.send("stopRight");
         isRight = false;
       }
     }
+
+     // receiving message
+    socket.onmessage = function(event) {
+      var u, x;
+      u = URL.createObjectURL(event.data);
+      x = new XMLHttpRequest();
+      x.open('GET', u, false); // although sync, you're not fetching over internet
+      x.send();
+      URL.revokeObjectURL(u);
+      console.log(JSON.parse(x.responseText));
+      // console.log(JSON.parse(event.data));
+      threeList = JSON.parse(x.responseText);
+      socketMap.send(threeList);
+    }
+
 </script>
 
 </html>
