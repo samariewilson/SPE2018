@@ -7,11 +7,11 @@
   var isLeft = false;
   var isRight = false;
 
-  var threeList = NULL;
+  var threeList = null;
 
 
   var socket = new WebSocket("ws://10.9.48.8:9876");
-  var socketMap = new WebSocket("ws://10.9.48.8:1234");
+  var socketMap = new WebSocket("ws://127.0.0.1:1234");
 
   // send message when the key is pressed
   document.addEventListener("keydown", move, false);
@@ -75,7 +75,7 @@
       URL.revokeObjectURL(u);
       console.log(JSON.parse(x.responseText));
       // console.log(JSON.parse(event.data));
-      threeList = JSON.parse(x.responseText);
+      threeList = x.responseText;
       socketMap.send(threeList);
     }
 
