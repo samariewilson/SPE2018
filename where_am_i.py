@@ -56,9 +56,9 @@ def update_y(y_list):
     return y
 
 
-def find_direction():                     # returns cardinal direction of car
+def find_direction(x, y, time):           # returns cardinal direction of car
 
-    seconds = update_time()               # how long the car has been turning
+    seconds = time                        # how long the car has been turning
 
     if seconds >= 9 or seconds < 0.6:     # directions based on the circle time
         north(x, y)
@@ -190,5 +190,6 @@ def southwest(x_list, y_list):
 if __name__ == '__main__':
     x = [1, 2, 3, 4]
     y = [1, 2, 3, 4]
-
-    print(find_direction())
+    seconds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    for i in range(10):
+        print(find_direction(x, y, seconds[i]))
