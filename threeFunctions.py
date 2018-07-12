@@ -27,6 +27,7 @@ emergency_backup = Value ('b', False)
 x_list = [0]
 y_list = [0]
 strength_list = [0]
+sec = [0]
 start = 0
 start2 = 0
 end = 0
@@ -124,6 +125,8 @@ def update_x(direction, seconds, socket):
     global x_list
     global y_list
     global strength_list
+    global sec
+
 #    x = x_list
     speed = 0.5488             # meters per second at speed 90
     distance = speed * seconds
@@ -133,6 +136,8 @@ def update_x(direction, seconds, socket):
 
     sig = wi.strength()        # get wifi strength
     strength_list.append(sig)
+    sec.append(seconds)
+
 
     if direction == "left":     # if left arrow is pressed
         x_list.append(last_place - distance)
@@ -150,6 +155,8 @@ def update_y(direction, seconds, socket):
     global y_list
     global x_list
     global strength_list
+    global sec
+
     #y = y_list
     speed = 0.5488             # meters per second at speed 90
     #seconds = (end - start)
@@ -160,6 +167,7 @@ def update_y(direction, seconds, socket):
 
     sig = wi.strength()        # get wifi strength
     strength_list.append(sig)
+    sec.append(seconds)
 
     if direction == "down":     # if down arrow is pressed
         y_list.append(last_place - distance)
