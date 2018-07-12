@@ -145,8 +145,9 @@ def update_x(direction, seconds, socket):
         x_list.append(last_place + distance)
     #x_list =  x
     # print (zip(x_list,y_list, strength_list))
+    print sec
 
-    threeList = list(zip(x_list,y_list, strength_list))
+    threeList = list(zip(x_list,y_list, strength_list, sec))
 
     socket.sendMessage(json.dumps(threeList))
     return x_list
@@ -174,9 +175,9 @@ def update_y(direction, seconds, socket):
     elif direction == "up":   # if up arrow is pressed
         y_list.append(last_place + distance)
     #y_list = y
-
+    print sec
 #    print (list(zip(x_list,y_list, strength_list)))
-    threeList = list(zip(x_list,y_list, strength_list))
+    threeList = list(zip(x_list,y_list, strength_list, sec))
 
 
     socket.sendMessage(json.dumps(threeList))
