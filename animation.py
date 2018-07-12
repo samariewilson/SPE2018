@@ -5,8 +5,8 @@ matplotlib.use('TKAgg')
 import matplotlib.pyplot as plt
 import numpy as np
 from where_am_i import find_direction
-from colors import colors
-from colors import get_strength
+#from colors import colors
+#from colors import get_strength
 
 port = 1234
 
