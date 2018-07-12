@@ -1,6 +1,5 @@
 import time
 import numpy as np
-import matplotlib
 
 
 def update_time():
@@ -58,30 +57,30 @@ def update_y(y_list):
 
 def find_direction(x, y, time):           # returns cardinal direction of car
 
-    seconds = time                        # how long the car has been turning
+    turn = (360 * time) / 9.6             # degrees the car has turned
 
-    if seconds >= 9 or seconds < 0.6:     # directions based on the circle time
+    if degrees >= 337.5 or degrees < 22.5:# directions based on the circle time
         north(x, y)
         return "north", x, y
-    elif seconds >= 0.6 and seconds < 1.8:
+    elif degrees >= 22.6 and degrees < 67.5:
         northeast(x, y)
         return "northeast", x, y
-    elif seconds >= 1.8 and seconds < 3:
+    elif degrees >= 67.5 and degrees < 112.5:
         east(x, y)
         return "east", x, y
-    elif seconds >= 3 and seconds < 4.2:
+    elif degrees >= 112.5 and degrees < 157.5:
         southeast(x, y)
         return "southeast", x, y
-    elif seconds >= 4.2 and seconds < 5.4:
+    elif degrees >= 157.5 and degrees < 202.5:
         south(x, y)
         return "south", x, y
-    elif seconds >= 5.4 and seconds < 6.6:
+    elif degrees >= 202.5 and degrees < 247.5:
         southwest(x, y)
         return "southwest", x, y
-    elif seconds >= 6.6 and seconds < 7.8:
+    elif degrees >= 247.5 and degrees < 292.5:
         west(x, y)
         return "west", x, y
-    elif seconds >= 7.8 and seconds < 9:
+    elif degrees >= 292.5 and degrees < 337.5:
         northwest(x, y)
         return "northwest", x, y
 
