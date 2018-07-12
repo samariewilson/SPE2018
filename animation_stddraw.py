@@ -20,9 +20,9 @@ for i, j, k, m in zip(x, y, strength, time):
     elif strength < (max - increment) and strength >= (max - (2*increment)):
         std.setPenColor(std.MAGENTA)
     elif strength < (max - (2*increment)) and strength >= (max - (3*increment)):
-        std.setPenColor(std.PINK)
-    elif strength < (max - (3*increment)) and strength >= (max - (4*increment)):
         std.setPenColor(std.VIOLET)
+    elif strength < (max - (3*increment)) and strength >= (max - (4*increment)):
+        std.setPenColor(std.PINK)
     elif strength < (max - (4*increment)) and strength >= (max - (5*increment)):
         std.setPenColor(std.BOOK_LIGHT_BLUE)
     elif strength < (max - (5*increment)) and strength >= (max - (6*increment)):
