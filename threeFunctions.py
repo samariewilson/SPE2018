@@ -141,9 +141,10 @@ def update_x(direction, seconds, socket):
     #x_list =  x
     # print (zip(x_list,y_list, strength_list))
 
-    threeList = list(zip(x_list,y_list, strength_list))
+    twoList = list(zip(x_list,y_list))
 
-    socket.sendMessage(json.dumps(threeList))
+    socket.sendMessage(json.dumps(twoList))
+    socket.sendMessage(json.dumps(strength_list))
     return x_list
 
 def update_y(direction, seconds, socket):
@@ -168,9 +169,11 @@ def update_y(direction, seconds, socket):
     #y_list = y
 
 #    print (list(zip(x_list,y_list, strength_list)))
-    threeList = list(zip(x_list,y_list, strength_list))
+    twoList = list(zip(x_list,y_list))
 
-    socket.sendMessage(json.dumps(threeList))
+
+    socket.sendMessage(json.dumps(twoList))
+    socket.sendMessage(json.dumps(strength_list))
     return y_list
 
 class Ultrasonic_Avoidance(object):
