@@ -23,7 +23,7 @@ class SimpleEcho(WebSocket):
 
 plt.ion()
 fig, ax = plt.subplots()
-x, y, strength = [0],[0],[10, 20, 30, 40, 50, 60, 70, 80]
+x, y, strength = [0],[0],[10, 20, 30, 40, 50, 60, 70, 80, 90]
 
 sc = ax.scatter(x,y, c = colors(get_strength()))
 plt.xlim(-10,10)
@@ -32,7 +32,7 @@ plt.ylim(-10,10)
 plt.draw()
 
 for i in range(1000):
-    find_direction(x, y)
+    find_direction(x, y, seconds)
 
     sc.set_offsets(np.c_[x,y])
     fig.canvas.draw_idle()
