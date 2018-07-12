@@ -1,13 +1,15 @@
 import stddraw as std
+from where_am_i import find_direction
 
-std.setXscale(-50.0, 50.0)
-std.setYscale(-50.0, 50.0)
-RADIUS = 0.9
-x = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-y = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+std.setXscale(-10.0, 10.0)
+std.setYscale(-10.0, 10.0)
+RADIUS = 0.2
+x = [0]
+y = [0]
+time = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 strength = [10, 20, 30, 40, 50, 60, 70, 80, 90]
 
-for i, j, k in zip(x, y, strength):
+for i, j, k, m in zip(x, y, strength, time):
     max = 90
     increment = 10
     strength = k
@@ -34,6 +36,7 @@ for i, j, k in zip(x, y, strength):
     else:
         print('data not in expected range', strength)
 
+    find_direction(x, y, m)
     std.filledCircle(i, j, RADIUS)
     std.show(500)
 
