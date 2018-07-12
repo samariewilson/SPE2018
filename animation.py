@@ -1,18 +1,16 @@
-#from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
+from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 
 import matplotlib
 matplotlib.use('TKAgg')
 import matplotlib.pyplot as plt
 import numpy as np
-from where_am_i import update_x
-from where_am_i import update_y
-from where_am_i import southwest
+from where_am_i import find_direction
 from colors import colors
 from colors import get_strength
 
 port = 1234
 
-'''class SimpleEcho(WebSocket):
+class SimpleEcho(WebSocket):
     def handleMessage(self):
         threeList = json.loads(self.data)
         print threeList
@@ -21,7 +19,7 @@ port = 1234
         print(self.address, 'connected')
 
     def handleClose(self):
-        print(self.address, 'closed')'''
+        print(self.address, 'closed')
 
 plt.ion()
 fig, ax = plt.subplots()
@@ -34,9 +32,8 @@ plt.ylim(-10,10)
 plt.draw()
 
 for i in range(1000):
-    update_x(x)
-    update_y(y)
-    
+    find_direction(x, y)
+
     sc.set_offsets(np.c_[x,y])
     fig.canvas.draw_idle()
     plt.pause(0.1)
