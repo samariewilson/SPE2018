@@ -143,7 +143,7 @@ def update_x(direction, seconds, socket):
 
     threeList = list(zip(x_list,y_list, strength_list, seconds))
 
-    socket.sendMessage(json.dumps(twoList))
+    socket.sendMessage(json.dumps(threeList))
     return x_list
 
 def update_y(direction, seconds, socket):
