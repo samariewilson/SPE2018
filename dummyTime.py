@@ -1,4 +1,5 @@
 import time
+import random
 from itertools import groupby
 from multiprocessing import Process, Value, Array, Manager
 
@@ -58,36 +59,35 @@ def stop():
 
 def control(master_array, times):
     while True:
-        if master_array[i] == master_array[i-1] and len(master_array) < 3:
+        if master_array[-1] == master_array[-2] and len(master_array) <= 3 :
             pass
 
         else:
              sort = [(k, sum(1 for i in g)) for k,g in groupby(master_array)]
              dir, rep = zip(*sort)
-             repeats = rep[1]
-             difference = times[reapeats-1] - times[2]
-             temp[dir[1],difference]
+             print rep
+
+             difference = times[rep[1] + 1] - times[2]
+             temp = [dir[1],difference]
+             if (difference == 0):
+                difference = times[3] - times[2]
+                temp = [dir[1],difference]
+                master_array.remove[2]
+                times.remove[2]
+             master_array.remove[2:rep[1] + 2]
+             times.remove[2:rep[1] + 2]
+
              # socket.sendMessage...(temp)
              print (temp)
+             print master_array
+        time.sleep(1)
 
 def actions(master_array, times):
-    left_turn()
-    left_turn()
-    left_turn()
-    left_turn()
-    left_turn()
-    straight()
-    straight()
-    straight()
-    straight()
-    straight()
-    straight()
-    left_turn()
-    left_turn()
-    backward()
-    backward()
-    right_turn()
-    stop()
+    a = [left_turn, right_turn, straight, backward, stop]
+    while True:
+        a[random.randint(0,len(a)-1)]()
+        print master_array
+        time.sleep(0.1)
 
 p1 = Process(target = control, args = (master_array, times))
 p2 = Process(target = actions, args = (master_array, times))
