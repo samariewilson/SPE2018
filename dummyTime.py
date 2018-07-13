@@ -59,35 +59,47 @@ def stop():
 
 def control(master_array, times):
     while True:
-        if master_array[-1] == master_array[-2] and len(master_array) <= 3 :
-            pass
+        if len(master_array) <= 3:
+            if master_array[-1] == master_array[-2]:
+                pass
 
         else:
              sort = [(k, sum(1 for i in g)) for k,g in groupby(master_array)]
              dir, rep = zip(*sort)
-             print rep
+
 
              difference = times[rep[1] + 1] - times[2]
              temp = [dir[1],difference]
              if (difference == 0):
                 difference = times[3] - times[2]
                 temp = [dir[1],difference]
-                master_array.remove[2]
-                times.remove[2]
-             master_array.remove[2:rep[1] + 2]
-             times.remove[2:rep[1] + 2]
+                print "no"
+                print temp
+                print "nah"
+                print master_array
+                #send message to SAM
+                del master_array[2]
+                del times[2]
+             else:
+                 print "hi"
+                 print temp
+                 print "Yay"
+                 print master_array
+                 del master_array[2: rep[1] + 2]
+                 del times[2: rep[1] + 2]
 
              # socket.sendMessage...(temp)
-             print (temp)
-             print master_array
+
+
         time.sleep(1)
 
 def actions(master_array, times):
-    a = [left_turn, right_turn, straight, backward, stop]
+     #a = [left_turn, right_turn, straight, backward, stop]
     while True:
-        a[random.randint(0,len(a)-1)]()
-        print master_array
-        time.sleep(0.1)
+        #a[random.randint(0,len(a)-1)]
+        left_turn
+        left_turn
+        time.sleep(0.5)
 
 p1 = Process(target = control, args = (master_array, times))
 p2 = Process(target = actions, args = (master_array, times))
