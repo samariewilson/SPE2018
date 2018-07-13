@@ -1,7 +1,8 @@
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-from multiprocessing import Process, Value
+from multiprocessing import Process, Value, Array, Manager
 from picar import back_wheels
 from picar import front_wheels
+from itertools import groupby
 
 import json
 import picar
@@ -12,8 +13,16 @@ import time
 import numpy as np
 
 import wifi_phone as wi
-
 import sys
+
+global master_array
+global times
+global i
+
+manager = Manager()
+master_array = manager.list(['s','s'])
+times = manager.list([0,0])
+
 
 picar.setup()
 fw = front_wheels.Front_Wheels(db='config')
@@ -49,13 +58,15 @@ class SimpleEcho(WebSocket):
             print ("start")
             print start
             bw.speed = forward_speed
-            bw.backward()
+            foward()
+            #bw.backward()
             straight_turn()
 
         elif self.data == "down":
             start = time.time()
             bw.speed = forward_speed
-            bw.forward()
+            backward()
+            #bw.forward()
             straight_turn()
 
         elif self.data == "right":
@@ -72,7 +83,7 @@ class SimpleEcho(WebSocket):
             print end2
             print "difference"
             print difference
-            print update_x("left", difference, self)
+            #print update_x("left", difference, self)
             straight_turn()
         elif self.data == "stopRight":
             end2 = time.time()
@@ -81,7 +92,7 @@ class SimpleEcho(WebSocket):
             print end2
             print "difference"
             print difference
-            print update_x("right", difference, self)
+            #print update_x("right", difference, self)
             straight_turn()
         elif self.data == "stopUp":
             end = time.time()
@@ -90,7 +101,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
-            print update_y("up", difference, self)
+            #print update_y("up", difference, self)
             stop()
         elif self.data == "stopDown":
             end = time.time()
@@ -99,7 +110,7 @@ class SimpleEcho(WebSocket):
             print end
             print "difference"
             print difference
-            print update_y("down", difference, self)
+            #print update_y("down", difference, self)
             stop()
 
     def handleConnected(self):
@@ -112,13 +123,31 @@ def stop():
     bw.stop()
 
 def left_turn():
+    master_array.append('l')
+    start = time.time()
+    times.append(start)
     fw.turn(87)
+
+def right_turn():
+    master_array.append('r')
+    start = time.time()
+    times.append(start)
+    fw.turn(127)
 
 def straight_turn():
     fw.turn(97)
-def right_turn():
-    fw.turn(127)
 
+def forward():
+    master_array.append('f')
+    start = time.time()
+    times.append(start)
+    bw.backward()
+
+def backward():
+    master_array.append('b')
+    start = time.time()
+    times.append(start)
+    bw.forward()
 
 
 def update_x(direction, seconds, socket):
@@ -286,6 +315,41 @@ def distanceLoop():
             bw.stop()
             print "Read distance error."
 
+def control(master_array, times):
+    while True:
+        if len(master_array) <= 3:
+            if master_array[-1] == master_array[-2]:
+                pass
+
+        else:
+             sort = [(k, sum(1 for i in g)) for k,g in groupby(master_array)]
+             dir, rep = zip(*sort)
+
+
+             difference = times[rep[1] + 1] - times[2]
+             temp = [dir[1],difference]
+             if (difference == 0):
+                difference = times[3] - times[2]
+                temp = [dir[1],difference]
+                print "no"
+                print temp
+                print "nah"
+                print master_array
+                #send message to SAM
+                del master_array[2]
+                del times[2]
+             else:
+                 print "hi"
+                 print temp
+                 print "Yay"
+                 print master_array
+                 del master_array[2: rep[1] + 2]
+                 del times[2: rep[1] + 2]
+
+             # socket.sendMessage...(temp)
+
+
+        time.sleep(1)
 
 
 
@@ -293,7 +357,10 @@ def distanceLoop():
 server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
+p3 = Process(target = control)
+p3.start()
 p2.start()
 p1.start()
 p1.join()
 p2.join()
+p3.join()
