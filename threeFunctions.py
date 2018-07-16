@@ -17,7 +17,7 @@ import sys
 
 global master_array
 global times
-global i
+
 
 manager = Manager()
 master_array = manager.list(['s','s'])
@@ -120,6 +120,10 @@ class SimpleEcho(WebSocket):
         print(self.address, 'closed')
 
 def stop():
+    master_array.append('s')
+    start = time.time()
+    times.append(start)
+
     bw.stop()
 
 def left_turn():
@@ -357,7 +361,7 @@ def control(master_array, times):
 server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
-p3 = Process(target = control)
+p3 = Process(target = control, args = (master_array, times))
 p3.start()
 p2.start()
 p1.start()
