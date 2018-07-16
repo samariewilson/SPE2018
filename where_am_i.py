@@ -11,6 +11,9 @@ class SimpleEcho(WebSocket):
         #receiving the data from HTML file
         temp = json.loads(self.data)
         direction,time,strength = zip(*temp)
+        get_point(angles, time, direction, x, y)
+        get_angle(angles, time, direction)
+
 
                                           # returns next coordinate of car
 def get_point(angles, time, direction, x, y):
