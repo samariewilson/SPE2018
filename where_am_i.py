@@ -23,7 +23,7 @@ class SimpleEcho(WebSocket):
 
 
                                           # returns next coordinate of car
-def get_point(angles, time, direction, x, y):
+def get_point(angles, time, direction, strength, x, y):
     speed = 0.5488                        # meters per seconds at speed 90
     distance = speed * time               # distance traveled overall
     angle = get_angle(angles, time, direction)
@@ -50,7 +50,7 @@ def get_point(angles, time, direction, x, y):
         x.append(x[-1] + x_dist)
         y.append(y[-1] + y_dist)
 
-    return x, y
+    return x, y, signal
 
                                           # returns angle of car from initial
 def get_angle(angles, time, direction):
