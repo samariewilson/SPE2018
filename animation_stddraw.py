@@ -6,21 +6,17 @@ std.setXscale(-10.0, 10.0)
 std.setYscale(-10.0, 10.0)
 RADIUS = 0.2
 
-global direction
-global time
-global strength
-global x
-global y
-global angles
-
-x = [0]
-y = [0]
-angles = [0]
 
 port = 1234
 
 class SimpleEcho(WebSocket):
     def handleMessage(self):
+        x = [0]
+        y = [0]
+        angles = [0]
+        direction = [0]
+        time = [0]
+        strength = [0]
         #receiving the data from HTML file
         temp = json.loads(self.data)
         direction,time,strength = zip(*temp)
