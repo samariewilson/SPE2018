@@ -1,4 +1,5 @@
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
+from multiprocessing import Process, Value
 import stddraw as std
 from where_am_i import *
 
@@ -9,9 +10,9 @@ RADIUS = 0.2
 x = [0]
 y = [0]
 angles = [0]
-direction = [0]
-time = [0]
-strength = [0]
+direction = 0
+time = 0
+strength = 0
 
 port = 1234
 
@@ -22,12 +23,16 @@ class SimpleEcho(WebSocket):
         global strength
         #receiving the data from HTML file
         temp = json.loads(self.data)
-        direction,time,strength = zip(*temp)
+        directions,times,strengths = zip(*temp)
+        direction = directions[0]
+        time = times[0]
+        strength = strengths[0]
+
         #print(direction)
         #print(time)
         #print(strength)
 
-for i, j, s, t, d in zip(x, y, strength, time, direction):
+def mapper():
     x, y, strength = get_point(angles, time, direction, x, y, strength)
     max = 90
     increment = 10
@@ -62,4 +67,9 @@ while True:
     pass
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
-server.serveforever()
+p1 = Process(target = server.serveforever)
+p2 = Process(target = mapper)
+p2.start()
+p1.start()
+p1.join()
+p2.join()
