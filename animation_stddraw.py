@@ -23,9 +23,9 @@ class SimpleEcho(WebSocket):
         #receiving the data from HTML file
         temp = json.loads(self.data)
         direction,time,strength = zip(*temp)
-        print(direction)
-        print(time)
-        print(strength)
+        #print(direction)
+        #print(time)
+        #print(strength)
 
 for i, j, s, t, d in zip(x, y, strength, time, direction):
     x, y, strength = get_point(angles, time, direction, x, y, strength)
