@@ -23,15 +23,13 @@ class SimpleEcho(WebSocket):
         #receiving the data from HTML file
         temp = json.loads(self.data)
         direction,time,strength = zip(*temp)
-        get_point(angles, time, direction, x, y, strength)
-        get_angle(angles, time, direction)
 
 
 for i, j, s, t, d in zip(x, y, strength, time, direction):
     x, y, strength = get_point(angles, time, direction, x, y, strength)
     max = 90
     increment = 10
-    strength = k
+    strength = s
     if strength >= max:
         std.setPenColor(std.DARK_RED)
     elif strength < max and strength >= (max - increment):
@@ -54,8 +52,6 @@ for i, j, s, t, d in zip(x, y, strength, time, direction):
         std.setPenColor(std.BLACK)
     else:
         print('data not in expected range', strength)
-
-    x, y, strength = get_point(angles, t, d, x, y)
 
     std.filledCircle(i, j, RADIUS)
     std.show(500)
