@@ -44,10 +44,6 @@ end2 = 0
 
 class SimpleEcho(WebSocket):
     def handleMessage(self):
-        global start
-        global start2
-        global end
-        global end2
         if emergency_backup.value:
             return
 
