@@ -1,15 +1,19 @@
 import stddraw as std
-from where_am_i import find_direction
+from where_am_i import *
 
 std.setXscale(-10.0, 10.0)
 std.setYscale(-10.0, 10.0)
 RADIUS = 0.2
 x = [0]
 y = [0]
-time = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-strength = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+angles = [0]
+time = [.5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5,
+.5, .5]
+direction = ['right', 'right', 'right', 'right', 'right', 'right', 'right', 'right', 'right', 'right',
+'left', 'left', 'left', 'left', 'left', 'left', 'left', 'left', 'left', 'left']
+strength = [10, 20, 30, 40, 50, 60, 70, 80, 90, 34, 56, 76, 87, 345, 64, 34, 25, 657, 23, 5, 63, 34, 5, 6, 34]
 
-for i, j, k, m in zip(x, y, strength, time):
+for i, j, k, m, n in zip(x, y, strength, time, direction):
     max = 90
     increment = 10
     strength = k
@@ -36,7 +40,9 @@ for i, j, k, m in zip(x, y, strength, time):
     else:
         print('data not in expected range', strength)
 
-    find_direction(x, y, m)
+    get_point(angles, m, n, x, y)
+    print(angles)
+
     std.filledCircle(i, j, RADIUS)
     std.show(500)
 
