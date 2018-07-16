@@ -54,141 +54,55 @@ def update_y(y_list):
 
     return y
 
+                                          # returns next coordinate of car
+def get_point(angles, time, direction, x, y):
+    speed = 0.5488                        # meters per seconds at speed 90
+    distance = speed * time               # distance traveled overall
+    angle = get_angle(angles, time, direction)
+    angle = np.radians(angle)             #convert to radians
+                                          # distance travled in x direction
+    x_dist = np.absolute(np.sin(angle) * distance)
+                                          # distance travled in x direction
+    y_dist = np.absolute(np.cos(angle) * distance)
+    angle = np.degrees(angle)             # convert back to degrees
 
-def find_direction(x, y, time):           # returns cardinal direction of car
+    if angle >= 0 and angle < 90:
+        x.append(x[-1] - x_dist)
+        y.append(y[-1] + y_dist)
 
-    turn = (360 * time) / 9.6             # degrees the car has turned
+    elif angle >= 90 and angle < 180:
+        x.append(x[-1] - x_dist)
+        y.append(y[-1] - y_dist)
 
-    if degrees >= 337.5 or degrees < 22.5:# directions based on the circle time
-        north(x, y)
-        return "north", x, y
-    elif degrees >= 22.6 and degrees < 67.5:
-        northeast(x, y)
-        return "northeast", x, y
-    elif degrees >= 67.5 and degrees < 112.5:
-        east(x, y)
-        return "east", x, y
-    elif degrees >= 112.5 and degrees < 157.5:
-        southeast(x, y)
-        return "southeast", x, y
-    elif degrees >= 157.5 and degrees < 202.5:
-        south(x, y)
-        return "south", x, y
-    elif degrees >= 202.5 and degrees < 247.5:
-        southwest(x, y)
-        return "southwest", x, y
-    elif degrees >= 247.5 and degrees < 292.5:
-        west(x, y)
-        return "west", x, y
-    elif degrees >= 292.5 and degrees < 337.5:
-        northwest(x, y)
-        return "northwest", x, y
+    elif angle >= 180 and angle < 270:
+        x.append(x[-1] + x_dist)
+        y.append(y[-1] - y_dist)
 
-
-def north(x_list, y_list):
-    x = x_list
-    x.append(x[-1])                       # keeps x value the same
-
-    y = y_list
-    speed = 0.5488                        # meters per second at speed 90
-    seconds = update_time()
-    distance = speed * seconds
-    y.append(y[-1] + distance)            # adds distance to y
+    elif angle >= 270 and angle < 360:
+        x.append(x[-1] + x_dist)
+        y.append(y[-1] + y_dist)
 
     return x, y
 
-def south(x_list, y_list):
-    x = x_list
-    x.append(x[-1])                       # keeps x value the same
+                                          # returns angle of car from initial
+def get_angle(angles, time, direction):
+    last_angle = angles[-1]
+    degrees_moved = 360 * time / 9.6
 
-    y = y_list
-    speed = 0.5488                        # meters per second at speed 90
-    seconds = update_time()
-    distance = speed * seconds
-    y.append(y[-1] - distance)            # subtracts distance from y
+    if direction == 'left':               # if left arrow is pressed
+        angle = (last_angle + degrees_moved) % 360
 
-    return x, y
+    if direction == 'right':              # if right arrow is pressed
+        angle = (360 - ((360 - last_angle) + degrees_moved)) % 360
 
-def east(x_list, y_list):
-    x = x_list
-    speed = 0.5488                        # meters per second at speed 90
-    seconds = update_time()
-    distance = speed * seconds
-    x.append(x[-1] + distance)            # adds distance to x value
-
-    y = y_list
-    y.append(y[-1])                       # keeps y value the same
-
-    return x, y
-
-def west(x_list, y_list):
-    x = x_list
-    speed = 0.5488                        # meters per second at speed 90
-    seconds = update_time()
-    distance = speed * seconds
-    x.append(x[-1] - distance)            # subtracts distance from x value
-
-    y = y_list
-    y.append(y[-1])                       # keeps y value the same
-
-    return x, y
-
-def northeast(x_list, y_list):
-    x = x_list
-    speed = 0.5488                        # meters per second at speed 90
-    seconds = update_time()
-    distance = np.sin(20) * speed * seconds
-    x.append(x[-1] + distance)            # adds distance to x value
-
-    y = y_list
-    distance = np.cos(20) * speed * seconds
-    y.append(y[-1] + distance)            # adds distance to y value
-
-    return x, y
-
-def southeast(x_list, y_list):
-    x = x_list
-    speed = 0.5488                        # meters per second at speed 90
-    seconds = update_time()
-    distance = np.sin(20) * speed * seconds
-    x.append(x[-1] + distance)            # adds distance to x value
-
-    y = y_list
-    distance = np.cos(20) * speed * seconds
-    y.append(y[-1] - distance)            # subtracts distance from y value
-
-    return x, y
-
-def northwest(x_list, y_list):
-    x = x_list
-    speed = 0.5488                        # meters per second at speed 90
-    seconds = update_time()
-    distance = np.sin(20) * speed * seconds
-    x.append(x[-1] - distance)            # subtracts distance from x value
-
-    y = y_list
-    distance = np.cos(20) * speed * seconds
-    y.append(y[-1] + distance)            # adds distance to y value
-
-    return x, y
-
-
-def southwest(x_list, y_list):
-    x = x_list
-    speed = 0.5488                        # meters per second at speed 90
-    seconds = update_time()
-    distance = np.sin(20) * speed * seconds
-    x.append(x[-1] - distance)            # subtracts distance from x value
-
-    y = y_list
-    distance = np.cos(20) * speed * seconds
-    y.append(y[-1] - distance)            # subtracts distance from y value
-
-    return x, y
+    angles.append(angle)
+    return angle
 
 if __name__ == '__main__':
     x = [1, 2, 3, 4]
     y = [1, 2, 3, 4]
+    angles = [0]
     seconds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    for i in range(10):
-        print(find_direction(x, y, seconds[i]))
+
+    print(get_point(angles, 5.5, 'left', x, y))
+    print(get_angle(angles, 5.5, 'left'))
