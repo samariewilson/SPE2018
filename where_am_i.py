@@ -1,32 +1,9 @@
-from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 import time
 import numpy as np
-
-global direction
-global time
-global strength
-global x
-global y
-global angles
-
-x = [0]
-y = [0]
-angles = [0]
-
-class SimpleEcho(WebSocket):
-    def handleMessage(self):
-        #receiving the data from HTML file
-        temp = json.loads(self.data)
-        direction,time,strength = zip(*temp)
-        get_point(angles, time, direction, x, y)
-        get_angle(angles, time, direction)
-
-
                                           # returns next coordinate of car
-def get_point(angles, time, direction, x, y):
+def get_point(angles, time, direction, x, y, strength):
     speed = 0.5488                        # meters per seconds at speed 90
     distance = speed * time               # distance traveled overall
-    strength = get_strength()
     angle = get_angle(angles, time, direction)
     angle = np.radians(angle)             #convert to radians
                                           # distance travled in x direction
