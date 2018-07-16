@@ -9,6 +9,10 @@ global x
 global y
 global angles
 
+x = [0]
+y = [0]
+angles = [0]
+
 class SimpleEcho(WebSocket):
     def handleMessage(self):
         #receiving the data from HTML file
@@ -63,13 +67,3 @@ def get_angle(angles, time, direction):
         angle = last_angle
     angles.append(angle)
     return angle
-
-
-if __name__ == '__main__':
-    x = [0]
-    y = [0]
-    angles = [0]
-    seconds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-    print(get_point(angles, 5.5, 'left', x, y))
-    print(get_angle(angles, 5.5, 'left'))
