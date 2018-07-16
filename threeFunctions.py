@@ -126,6 +126,7 @@ def straight_turn():
     fw.turn(97)
 
 def forward():
+    print "hello"
     print master_array, times
     master_array.append('f')
     start = time.time()
