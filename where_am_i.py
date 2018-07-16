@@ -1,5 +1,16 @@
+from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 import time
 import numpy as np
+
+global direction
+global time
+global strength
+
+class SimpleEcho(WebSocket):
+    def handleMessage(self):
+        #receiving the data from HTML file
+        temp = json.loads(self.data)
+        direction,time,strength = zip(*temp)
 
                                           # returns next coordinate of car
 def get_point(angles, time, direction, x, y):
