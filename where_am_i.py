@@ -5,6 +5,9 @@ import numpy as np
 global direction
 global time
 global strength
+global x
+global y
+global angles
 
 class SimpleEcho(WebSocket):
     def handleMessage(self):
@@ -50,19 +53,21 @@ def get_angle(angles, time, direction):
     last_angle = angles[-1]
     degrees_moved = 360 * time / 9.6
 
-    if direction == 'left':               # if left arrow is pressed
+    if direction == 'l':                 # if left arrow is pressed
         angle = (last_angle + degrees_moved) % 360
 
-    if direction == 'right':              # if right arrow is pressed
+    elif direction == 'r':                 # if right arrow is pressed
         angle = (360 - ((360 - last_angle) + degrees_moved)) % 360
 
+    elif direction == 'f' or direction == 'b' or direction == 's':
+        angle = last_angle
     angles.append(angle)
     return angle
 
 
 if __name__ == '__main__':
-    x = [1, 2, 3, 4]
-    y = [1, 2, 3, 4]
+    x = [0]
+    y = [0]
     angles = [0]
     seconds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
