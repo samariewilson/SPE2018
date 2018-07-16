@@ -1,18 +1,33 @@
+from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 import stddraw as std
 from where_am_i import *
 
 std.setXscale(-10.0, 10.0)
 std.setYscale(-10.0, 10.0)
 RADIUS = 0.2
+
+global direction
+global time
+global strength
+global x
+global y
+global angles
+
 x = [0]
 y = [0]
 angles = [0]
-time = [.5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5,
-.5, .5]
-direction = ['r', 'l', 's', 's', 's', 's']
-strength = [10, 20, 30, 40, 50, 60, 70, 80, 90, 34, 56, 76, 87, 345, 64, 34, 25, 657, 23, 5, 63, 34, 5, 6, 34]
 
-for i, j, k, m, n in zip(x, y, strength, time, direction):
+port = 1234
+
+class SimpleEcho(WebSocket):
+    def handleMessage(self):
+        #receiving the data from HTML file
+        temp = json.loads(self.data)
+        direction,time,strength = zip(*temp)
+        get_point(angles, time, direction, x, y)
+        get_angle(angles, time, direction)
+
+for i, j, s, t, d in zip(x, y, strength, time, direction):
     max = 90
     increment = 10
     strength = k
@@ -39,10 +54,13 @@ for i, j, k, m, n in zip(x, y, strength, time, direction):
     else:
         print('data not in expected range', strength)
 
-    get_point(angles, m, n, x, y)
+    x, y, strength = get_point(angles, t, d, x, y)
 
     std.filledCircle(i, j, RADIUS)
     std.show(500)
 
 while True:
     pass
+
+server = SimpleWebSocketServer('', port, SimpleEcho)
+server.serveforever()
