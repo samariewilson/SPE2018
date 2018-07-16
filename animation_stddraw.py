@@ -9,8 +9,7 @@ y = [0]
 angles = [0]
 time = [.5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5, .5,
 .5, .5]
-direction = ['right', 'right', 'right', 'right', 'right', 'right', 'right', 'right', 'right', 'right',
-'left', 'left', 'left', 'left', 'left', 'left', 'left', 'left', 'left', 'left']
+direction = ['r', 'l', 's', 's', 's', 's']
 strength = [10, 20, 30, 40, 50, 60, 70, 80, 90, 34, 56, 76, 87, 345, 64, 34, 25, 657, 23, 5, 63, 34, 5, 6, 34]
 
 for i, j, k, m, n in zip(x, y, strength, time, direction):
@@ -41,7 +40,6 @@ for i, j, k, m, n in zip(x, y, strength, time, direction):
         print('data not in expected range', strength)
 
     get_point(angles, m, n, x, y)
-    print(angles)
 
     std.filledCircle(i, j, RADIUS)
     std.show(500)
