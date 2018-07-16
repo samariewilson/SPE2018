@@ -55,61 +55,46 @@ class SimpleEcho(WebSocket):
         if not close_to_wall.value and self.data == "up":
 
             start = time.time()
-            print ("start")
-            print start
+            #print ("start")
+            #print start
             bw.speed = forward_speed
             foward()
             #bw.backward()
             straight_turn()
 
         elif self.data == "down":
-            start = time.time()
+            #start = time.time()
             bw.speed = forward_speed
             backward()
             #bw.forward()
             straight_turn()
 
         elif self.data == "right":
-            start2 = time.time()
+            #start2 = time.time()
             right_turn()
 
         elif self.data == "left":
-            start2 = time.time()
+            #start2 = time.time()
             left_turn()
         elif self.data == "stopLeft":
-            end2 = time.time()
-            difference = end2 - start2
-            print "end"
-            print end2
-            print "difference"
-            print difference
+            #end2 = time.time()
+            #difference = end2 - start2
+            #print difference
             #print update_x("left", difference, self)
             straight_turn()
         elif self.data == "stopRight":
-            end2 = time.time()
-            difference = end2 - start2
-            print "end"
-            print end2
-            print "difference"
-            print difference
+            #end2 = time.time()
+            #difference = end2 - start2
             #print update_x("right", difference, self)
             straight_turn()
         elif self.data == "stopUp":
-            end = time.time()
-            difference = end - start
-            print "end"
-            print end
-            print "difference"
-            print difference
+            #end = time.time()
+            #difference = end - start
             #print update_y("up", difference, self)
             stop()
         elif self.data == "stopDown":
-            end = time.time()
-            difference = end - start
-            print "end"
-            print end
-            print "difference"
-            print difference
+            #end = time.time()
+            #difference = end - start
             #print update_y("down", difference, self)
             stop()
 
@@ -328,15 +313,20 @@ def control(master_array, times):
         else:
              sort = [(k, sum(1 for i in g)) for k,g in groupby(master_array)]
              dir, rep = zip(*sort)
-
-
              difference = times[rep[1] + 1] - times[2]
-             temp = [dir[1],difference]
+             #gets signal strength
+             sig = wi.strength()
+             temp = [dir[1],difference, sig]
              if (difference == 0):
                 difference = times[3] - times[2]
-                temp = [dir[1],difference]
+                #gets signal strength
+                sig = wi.strength()
+                temp = [dir[1], difference, sig]
                 print "no"
                 print temp
+
+
+                socket.sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
                 #send message to SAM
@@ -345,6 +335,7 @@ def control(master_array, times):
              else:
                  print "hi"
                  print temp
+                 socket.sendMessage(json.dumps(temp))
                  print "Yay"
                  print master_array
                  del master_array[2: rep[1] + 2]
