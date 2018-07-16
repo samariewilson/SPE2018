@@ -56,7 +56,7 @@ class SimpleEcho(WebSocket):
             print "dog"
             bw.speed = forward_speed
             print "cat"
-            foward()
+            forward()
             #bw.backward()
             print "rat"
             straight_turn()
