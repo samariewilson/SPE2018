@@ -36,7 +36,7 @@ def mapper():
     x, y, strength = get_point(angles, time, direction, x, y, strength)
     max = 90
     increment = 10
-    strength = s
+    #strength = s
     if strength >= max:
         std.setPenColor(std.DARK_RED)
     elif strength < max and strength >= (max - increment):
@@ -60,7 +60,7 @@ def mapper():
     else:
         print('data not in expected range', strength)
 
-    std.filledCircle(i, j, RADIUS)
+    std.filledCircle(x, y, RADIUS)
     std.show(500)
 
 while True:
