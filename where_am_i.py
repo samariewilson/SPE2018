@@ -3,8 +3,8 @@ import numpy as np
                                           # returns next coordinate of car
 def get_point(angles, time, direction, x, y, strength):
     speed = 0.5488                        # meters per seconds at speed 90
-    distance = speed * time               # distance traveled overall
-    angle = get_angle(angles, time, direction)
+    distance = speed * time[-1]               # distance traveled overall
+    angle = get_angle(angles, time[-1], direction)
     angle = np.radians(angle)             #convert to radians
                                           # distance travled in x direction
     x_dist = np.absolute(np.sin(angle) * distance)
@@ -41,8 +41,9 @@ def get_angle(angles, time, direction):
     elif direction == 'r':                 # if right arrow is pressed
         angle = (360 - ((360 - last_angle) + degrees_moved)) % 360
 
-    elif direction == 'f' or direction == 'b' or direction == 's':
+    else:
         angle = last_angle
+
     angles.append(angle)
     return angle
 
