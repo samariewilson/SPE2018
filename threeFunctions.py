@@ -50,12 +50,15 @@ class SimpleEcho(WebSocket):
         print(self.data, close_to_wall.value)
         if not close_to_wall.value and self.data == "up":
 
-            start = time.time()
+            #start = time.time()
             #print ("start")
             #print start
+            print "dog"
             bw.speed = forward_speed
-            foward()
+            print "cat"
+            forward()
             #bw.backward()
+            print "rat"
             straight_turn()
 
         elif self.data == "down":
@@ -123,6 +126,8 @@ def straight_turn():
     fw.turn(97)
 
 def forward():
+    print "hello"
+    print master_array, times
     master_array.append('f')
     start = time.time()
     times.append(start)
