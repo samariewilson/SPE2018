@@ -360,7 +360,7 @@ def control(master_array, times, sock):
 
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
-p1 = Process(target = server.serveforever)
+p1 = Process(target = server.serveforever())
 p2 = Process(target = distanceLoop)
 p3 = Process(target = control, args = (master_array, times, server))
 p3.start()
