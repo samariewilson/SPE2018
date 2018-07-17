@@ -327,8 +327,7 @@ def control(master_array, times, sock):
                 temp = [dir[1], difference, sig]
                 print "no"
                 print temp
-
-
+                print sock.connections
                 sock.connections[0].sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
