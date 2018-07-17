@@ -22,6 +22,7 @@ global times
 manager = Manager()
 master_array = manager.list(['s','s'])
 times = manager.list([0,0])
+clients = manager.list()
 
 
 picar.setup()
@@ -101,6 +102,11 @@ class SimpleEcho(WebSocket):
             #difference = end - start
             #print update_y("down", difference, self)
             stop()
+
+    def handleConnected(self):
+        print(self.address, 'connected')
+        clients.append(self)
+        print clients
 
     def handleClose(self):
         print(self.address, 'closed')
@@ -327,7 +333,8 @@ def control(master_array, times, sock):
                 temp = [dir[1], difference, sig]
                 print "no"
                 print temp
-                print sock.connections
+
+
                 sock.connections[0].sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
