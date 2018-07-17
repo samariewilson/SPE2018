@@ -105,6 +105,7 @@ class SimpleEcho(WebSocket):
 
     def handleConnected(self):
         print(self.address, 'connected')
+        clients.append(self)
 
 
     def handleClose(self):
@@ -145,70 +146,6 @@ def backward():
     start = time.time()
     times.append(start)
     bw.forward()
-
-
-def update_x(direction, seconds, socket):
-    global x_list
-    global y_list
-    global strength_list
-    global sec
-
-#    x = x_list
-    speed = 0.5488             # meters per second at speed 90
-    distance = speed * seconds
-    last_place = x_list[-1]
-    distance = np.sin(20) * distance
-    y_list.append(y_list[-1])
-
-    sig = wi.strength()        # get wifi strength
-    strength_list.append(sig)
-    sec.append(seconds)
-
-
-    if direction == "left":     # if left arrow is pressed
-        x_list.append(last_place - distance)
-    elif direction == "right":   # if right arrow is pressed
-        x_list.append(last_place + distance)
-    #x_list =  x
-    # print (zip(x_list,y_list, strength_list))
-    print sec
-
-    threeList = list(zip(x_list,y_list, strength_list, sec))
-
-    socket.sendMessage(json.dumps(threeList))
-    return x_list
-
-def update_y(direction, seconds, socket):
-    global y_list
-    global x_list
-    global strength_list
-    global sec
-
-    #y = y_list
-    speed = 0.5488             # meters per second at speed 90
-    #seconds = (end - start)
-    distance = speed * seconds
-    last_place = y_list[-1]
-    distance = np.cos(20) * distance
-    x_list.append(x_list[-1])
-
-    sig = wi.strength()        # get wifi strength
-    strength_list.append(sig)
-    sec.append(seconds)
-
-    if direction == "down":     # if down arrow is pressed
-        y_list.append(last_place - distance)
-    elif direction == "up":   # if up arrow is pressed
-        y_list.append(last_place + distance)
-    #y_list = y
-    print sec
-#    print (list(zip(x_list,y_list, strength_list)))
-    threeList = list(zip(x_list,y_list, strength_list, sec))
-
-
-    socket.sendMessage(json.dumps(threeList))
-
-    return y_list
 
 class Ultrasonic_Avoidance(object):
 	timeout = 0.05
@@ -356,12 +293,13 @@ def control(master_array, times, sock):
 
 
 server = SimpleWebSocketServer('', port, SimpleEcho, selectInterval = 0.1)
-p1 = Process(target = server.serveforever)
+#p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
 p3 = Process(target = control, args = (master_array, times, self))
 p3.start()
 p2.start()
-p1.start()
-p1.join()
+#p1.start()
+#p1.join()
+server.serveforever()
 p2.join()
 p3.join()
