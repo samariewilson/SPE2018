@@ -104,6 +104,7 @@ class SimpleEcho(WebSocket):
 
     def handleConnected(self):
         print(self.address, 'connected')
+        self.connections.append(self)
 
     def handleClose(self):
         print(self.address, 'closed')
