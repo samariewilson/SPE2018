@@ -336,7 +336,7 @@ def control(master_array, times, sock):
              else:
                  print "hi"
                  print temp
-                 socket.sendMessage(json.dumps(temp))
+                 sock.sendMessage(json.dumps(temp))
                  print "Yay"
                  print master_array
                  del master_array[2: rep[1] + 2]
@@ -350,7 +350,7 @@ def control(master_array, times, sock):
 
 
 
-server = SimpleWebSocketServer('', port, SimpleEcho)
+server = SimpleWebSocketServer('', port, SimpleEcho, selectInterval = 0.1)
 p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
 p3 = Process(target = control, args = (master_array, times, server))
