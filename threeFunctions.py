@@ -102,10 +102,6 @@ class SimpleEcho(WebSocket):
             #print update_y("down", difference, self)
             stop()
 
-    def handleConnected(self):
-        print(self.address, 'connected')
-        self.connections.append(self)
-
     def handleClose(self):
         print(self.address, 'closed')
 
