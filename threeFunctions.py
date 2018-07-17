@@ -104,6 +104,7 @@ class SimpleEcho(WebSocket):
             stop()
 
     def handleConnected(self):
+        global clients
         print(self.address, 'connected')
         clients.append(self)
         print clients
