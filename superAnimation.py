@@ -55,7 +55,7 @@ while True:
         print("difference: " + str(difference))
         print("strength: " + str(strength)
         difference = float(difference)
-        strength = float(difference)
+        strength = float(strength)
         mapper()
         print ("no")
         t.sleep(1)
