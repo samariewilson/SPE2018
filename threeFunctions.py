@@ -334,8 +334,7 @@ def control(master_array, times, sock):
                 sig = wi.strength()
                 temp = [dir[1], difference, sig]
                 print "no"
-                print temp
-                print clients
+                print json.dumps(temp)
                 sock.sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
