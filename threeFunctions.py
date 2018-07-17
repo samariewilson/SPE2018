@@ -22,7 +22,7 @@ global times
 manager = Manager()
 master_array = manager.list(['s','s'])
 times = manager.list([0,0])
-connection = []
+connection = manager.list()
 
 
 picar.setup()
@@ -100,7 +100,7 @@ class SimpleEcho(WebSocket):
 
     def handleConnected(self):
         print(self.address, 'connected')
-        connection = self
+        connection.append(self)
 
     def handleClose(self):
         print(self.address, 'closed')
@@ -329,7 +329,7 @@ def control(master_array, times):
                 print temp
 
 
-                connection.sendMessage(json.dumps(temp))
+                connection[0].sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
                 #send message to SAM
@@ -338,7 +338,7 @@ def control(master_array, times):
              else:
                  print "hi"
                  print temp
-                 connection.sendMessage(json.dumps(temp))
+                 connection[0].sendMessage(json.dumps(temp))
                  print "Yay"
                  print master_array
                  del master_array[2: rep[1] + 2]
