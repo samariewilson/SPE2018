@@ -105,9 +105,6 @@ class SimpleEcho(WebSocket):
 
     def handleConnected(self):
         print(self.address, 'connected')
-        global p3
-        p3 = Process(target = control, args = (master_array, times, self))
-        p3.start()
 
 
     def handleClose(self):
@@ -361,8 +358,8 @@ def control(master_array, times, sock):
 server = SimpleWebSocketServer('', port, SimpleEcho, selectInterval = 0.1)
 p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
-#p3 = Process(target = control, args = (master_array, times, server))
-#p3.start()
+p3 = Process(target = control, args = (master_array, times, self))
+p3.start()
 p2.start()
 p1.start()
 p1.join()
