@@ -305,7 +305,7 @@ def distanceLoop():
             bw.stop()
             print "Read distance error."
 
-def control(master_array, times, socket):
+def control(master_array, times, sock):
     while True:
         if len(master_array) <= 3:
             if master_array[-1] == master_array[-2]:
@@ -327,7 +327,7 @@ def control(master_array, times, socket):
                 print temp
 
 
-                socket.sendMessage(json.dumps(temp))
+                sock.sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
                 #send message to SAM
