@@ -335,9 +335,8 @@ def control(master_array, times, sock):
                 temp = [dir[1], difference, sig]
                 print "no"
                 print temp
-
-
-                sock.connections[0].sendMessage(json.dumps(temp))
+                print clients
+                clients[0].sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
                 #send message to SAM
@@ -346,7 +345,7 @@ def control(master_array, times, sock):
              else:
                  print "hi"
                  print temp
-                 sock.connections[0].sendMessage(json.dumps(temp))
+                 clients[0].sendMessage(json.dumps(temp))
                  print "Yay"
                  print master_array
                  del master_array[2: rep[1] + 2]
