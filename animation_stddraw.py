@@ -65,8 +65,8 @@ def mapper():
     std.filledCircle(x, y, RADIUS)
     std.show(500)
 
-while True:
-    pass
+#while True:
+    #pass
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target = server.serveforever)
