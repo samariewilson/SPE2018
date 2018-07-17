@@ -1,6 +1,5 @@
 import numpy as np
-global strength
-strength = 10
+
 # takes lists angles, x, and y, floats time and strength, and string direction
                                           # and returns next coordinate of car
 def get_point(angles, time, direction, x, y, strength):
