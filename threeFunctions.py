@@ -22,6 +22,7 @@ global times
 manager = Manager()
 master_array = manager.list(['s','s'])
 times = manager.list([0,0])
+connection = []
 
 
 picar.setup()
@@ -99,6 +100,7 @@ class SimpleEcho(WebSocket):
 
     def handleConnected(self):
         print(self.address, 'connected')
+        connection = self
 
     def handleClose(self):
         print(self.address, 'closed')
@@ -305,7 +307,7 @@ def distanceLoop():
             bw.stop()
             print "Read distance error."
 
-def control(master_array, times, sock):
+def control(master_array, times):
     while True:
         if len(master_array) <= 3:
             if master_array[-1] == master_array[-2]:
@@ -327,7 +329,7 @@ def control(master_array, times, sock):
                 print temp
 
 
-                sock.sendMessage(json.dumps(temp))
+                connection.sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
                 #send message to SAM
@@ -336,7 +338,7 @@ def control(master_array, times, sock):
              else:
                  print "hi"
                  print temp
-                 sock.sendMessage(json.dumps(temp))
+                 connection.sendMessage(json.dumps(temp))
                  print "Yay"
                  print master_array
                  del master_array[2: rep[1] + 2]
@@ -353,7 +355,7 @@ def control(master_array, times, sock):
 server = SimpleWebSocketServer('', port, SimpleEcho, selectInterval = 0.1)
 p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
-p3 = Process(target = control, args = (master_array, times, server))
+p3 = Process(target = control, args = (master_array, times))
 p3.start()
 p2.start()
 p1.start()
