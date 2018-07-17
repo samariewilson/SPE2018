@@ -1,10 +1,13 @@
 import time
 import numpy as np
-                                          # returns next coordinate of car
+global strength
+strength = 10
+# takes lists angles, x, and y, floats time and strength, and string direction
+                                          # and returns next coordinate of car
 def get_point(angles, time, direction, x, y, strength):
     speed = 0.5488                        # meters per seconds at speed 90
-    distance = speed * time[-1]               # distance traveled overall
-    angle = get_angle(angles, time[-1], direction)
+    distance = speed * time               # distance traveled overall
+    angle = get_angle(angles, time, direction)
     angle = np.radians(angle)             #convert to radians
                                           # distance travled in x direction
     x_dist = np.absolute(np.sin(angle) * distance)
@@ -47,5 +50,13 @@ def get_angle(angles, time, direction):
     angles.append(angle)
     return angle
 
-def get_strength():
+def get_strength(strength):
     return strength
+
+if __name__ == '__main__':
+    x = [0]
+    y = [0]
+    angles = [0]
+    direction = 'l'
+    time = 0
+    print(get_point(angles, time, direction, x, y, strength))
