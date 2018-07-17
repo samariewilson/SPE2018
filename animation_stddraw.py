@@ -2,6 +2,7 @@ from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from multiprocessing import Process, Value, Array, Manager
 import stddraw as std
 from where_am_i import *
+import tkinter
 
 std.setXscale(-10.0, 10.0)
 std.setYscale(-10.0, 10.0)
