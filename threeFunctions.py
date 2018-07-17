@@ -22,7 +22,7 @@ global times
 manager = Manager()
 master_array = manager.list(['s','s'])
 times = manager.list([0,0])
-clients = []
+clients = manager.list([])
 
 
 picar.setup()
