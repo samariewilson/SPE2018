@@ -22,7 +22,6 @@ global times
 manager = Manager()
 master_array = manager.list(['s','s'])
 times = manager.list([0,0])
-clients = manager.list([])
 
 
 picar.setup()
@@ -55,31 +54,58 @@ class SimpleEcho(WebSocket):
 
         print(self.data, close_to_wall.value)
         if not close_to_wall.value and self.data == "up":
+
+            #start = time.time()
+            #print ("start")
+            #print start
+            print "dog"
             bw.speed = forward_speed
+            print "cat"
             forward()
+            #bw.backward()
+            print "rat"
             straight_turn()
 
         elif self.data == "down":
+            #start = time.time()
             bw.speed = forward_speed
             backward()
+            #bw.forward()
             straight_turn()
 
         elif self.data == "right":
+            #start2 = time.time()
             right_turn()
 
         elif self.data == "left":
+            #start2 = time.time()
             left_turn()
         elif self.data == "stopLeft":
+            #end2 = time.time()
+            #difference = end2 - start2
+            #print difference
+            #print update_x("left", difference, self)
             straight_turn()
         elif self.data == "stopRight":
+            #end2 = time.time()
+            #difference = end2 - start2
+            #print update_x("right", difference, self)
             straight_turn()
         elif self.data == "stopUp":
+            #end = time.time()
+            #difference = end - start
+            #print update_y("up", difference, self)
             stop()
         elif self.data == "stopDown":
+            #end = time.time()
+            #difference = end - start
+            #print update_y("down", difference, self)
             stop()
 
     def handleConnected(self):
         print(self.address, 'connected')
+        clients.append(self)
+
 
     def handleClose(self):
         print(self.address, 'closed')
@@ -107,6 +133,7 @@ def straight_turn():
     fw.turn(97)
 
 def forward():
+    print "hello"
     print master_array, times
     master_array.append('f')
     start = time.time()
@@ -118,7 +145,6 @@ def backward():
     start = time.time()
     times.append(start)
     bw.forward()
-
 
 class Ultrasonic_Avoidance(object):
 	timeout = 0.05
@@ -222,7 +248,7 @@ def distanceLoop():
             bw.stop()
             print "Read distance error."
 
-def control():
+def control(master_array, times):
     while True:
         if len(master_array) <= 3:
             if master_array[-1] == master_array[-2]:
@@ -240,49 +266,51 @@ def control():
                 #gets signal strength
                 sig = wi.strength()
                 temp = [dir[1], difference, sig]
-                #print json.dumps(temp)
-                #sock.sendMessage(json.dumps(temp))
+                print "no"
+                print json.dumps(temp)
+                #clients[0].sendMessage(json.dumps(temp))
+                with open('testMoves.txt', 'w') as f:
+                     f.write(str(dir[1]))
+                     f.write("\n")
+                     f.write(str(difference))
+                     f.write("\n")
+                     f.write(str(sig))
                 print "nah"
                 print master_array
-                #send direction, difference and sig to file text
-                with open('testMoves.txt', 'w') as f:
-                    f.write(str(dir[1]))
-                    f.write("\n")
-                    f.write(str(difference))
-                    f.write("\n")
-                    f.write(str(sig))
-
+                #send message to SAM
                 del master_array[2]
                 del times[2]
-
              else:
                  print "hi"
-                 #print temp
-                 #sock.sendMessage(json.dumps(temp))
-                 #send direction, difference and sig to file text
+                 print temp
+                 clients[0].sendMessage(json.dumps(temp))
                  with open('testMoves.txt', 'w') as f:
                      f.write(str(dir[1]))
                      f.write("\n")
                      f.write(str(difference))
                      f.write("\n")
                      f.write(str(sig))
-
                  print "Yay"
                  print master_array
                  del master_array[2: rep[1] + 2]
                  del times[2: rep[1] + 2]
 
              # socket.sendMessage...(temp)
+
+
         time.sleep(1)
 
 
+
+
 server = SimpleWebSocketServer('', port, SimpleEcho, selectInterval = 0.1)
-p1 = Process(target = server.serveforever)
+#p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
-p3 = Process(target = control)
+p3 = Process(target = control, args = (master_array, times))
 p3.start()
 p2.start()
-p1.start()
-p1.join()
+#p1.start()
+#p1.join()
+server.serveforever()
 p2.join()
 p3.join()
