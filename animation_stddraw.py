@@ -26,22 +26,27 @@ class SimpleEcho(WebSocket):
         #receiving the data from HTML file
         temp = json.loads(self.data)
         directions,times,strengths = zip(*temp)
-        direction.value = directions[0]
-        time.value = times[0]
-        strength.value = strengths[0]
+        with direction.get_lock():
+            direction.value = directions[0]
+        with time.get_lock():
+            time.value = times[0]
+        with strength.get_lock():
+            strength.value = strengths[0]
 
         #print(direction)
         #print(time)
         #print(strength)
 
-def mapper(angles, time, direction, x, y, strength):
+def mapper():
+
+    print (time.value, direction.value, strength.value)
     x2, y2, strength2 = get_point(angles, time.value, direction.value, x, y, strength.value)
     max = 90
     increment = 10
     #strength = s
     if strength2>= max:
         std.setPenColor(std.DARK_RED)
-    elif strength2 < max and strength >= (max - increment):
+    elif strength2 < max and strength2 >= (max - increment):
         std.setPenColor(std.RED)
     elif strength2 < (max - increment) and strength2 >= (max - (2*increment)):
         std.setPenColor(std.MAGENTA)
@@ -68,9 +73,14 @@ def mapper(angles, time, direction, x, y, strength):
 #while True:
     #pass
 
+def mapLoop():
+    while True:
+        mapper()
+
+
 server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target = server.serveforever)
-p2 = Process(target = mapper, args = (angles, time.value, direction.value, x, y, strength.value))
+p2 = Process(target = mapLoop)
 p2.start()
 p1.start()
 p1.join()
