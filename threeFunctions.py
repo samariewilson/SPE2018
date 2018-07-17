@@ -104,11 +104,11 @@ class SimpleEcho(WebSocket):
             stop()
 
     def handleConnected(self):
-        global clients
-        print clients
         print(self.address, 'connected')
-        clients.append(self)
-        print clients
+        global p3
+        p3 = Process(target = control, args = (master_array, times, self))
+        p3.start()
+
 
     def handleClose(self):
         print(self.address, 'closed')
@@ -336,7 +336,7 @@ def control(master_array, times, sock):
                 print "no"
                 print temp
                 print clients
-                clients[0].sendMessage(json.dumps(temp))
+                sock.sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
                 #send message to SAM
@@ -345,7 +345,7 @@ def control(master_array, times, sock):
              else:
                  print "hi"
                  print temp
-                 clients[0].sendMessage(json.dumps(temp))
+                 sock.sendMessage(json.dumps(temp))
                  print "Yay"
                  print master_array
                  del master_array[2: rep[1] + 2]
@@ -360,10 +360,10 @@ def control(master_array, times, sock):
 
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
-p1 = Process(target = server.serveforever())
+p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
-p3 = Process(target = control, args = (master_array, times, server))
-p3.start()
+#p3 = Process(target = control, args = (master_array, times, server))
+#p3.start()
 p2.start()
 p1.start()
 p1.join()
