@@ -1,5 +1,3 @@
-from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-from multiprocessing import Process, Value, Array, Manager
 import stddraw as std
 import time as t
 from where_am_i import *
@@ -9,7 +7,6 @@ std.setXscale(-10.0, 10.0)
 std.setYscale(-10.0, 10.0)
 RADIUS = 0.2
 
-manager = Manager()
 x = [0]
 y = [0]
 angles = [0]
