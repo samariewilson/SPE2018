@@ -104,7 +104,7 @@ class SimpleEcho(WebSocket):
 
     def handleConnected(self):
         print(self.address, 'connected')
-        clients.append(self)
+        #clients.append(self)
 
 
     def handleClose(self):
@@ -283,7 +283,7 @@ def control(master_array, times):
              else:
                  print "hi"
                  print temp
-                 clients[0].sendMessage(json.dumps(temp))
+                 #clients[0].sendMessage(json.dumps(temp))
                  with open('testMoves.txt', 'w') as f:
                      f.write(str(dir[1]))
                      f.write("\n")
