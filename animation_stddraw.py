@@ -12,9 +12,9 @@ x = manager.list([0])
 y = manager.list([0])
 angles = manager.list([0])
 
-direction = manager.Value('d', 0.0)
-time = manager.Value('d', 0,0)
-strength = manager.Value ('d', 0,0)
+direction = Value('d', 0.0)
+time = Value('d', 0.0)
+strength = Value ('d', 0.0)
 
 port = 1234
 
@@ -26,38 +26,38 @@ class SimpleEcho(WebSocket):
         #receiving the data from HTML file
         temp = json.loads(self.data)
         directions,times,strengths = zip(*temp)
-        direction = directions[0]
-        time = times[0]
-        strength = strengths[0]
+        direction.value = directions[0]
+        time.value = times[0]
+        strength.value = strengths[0]
 
         #print(direction)
         #print(time)
         #print(strength)
 
-def mapper():
-    x2, y2, strength2 = get_point(angles, time, direction, x, y, strength)
+def mapper(angles, time, direction, x, y, strength):
+    x2, y2, strength2 = get_point(angles, time.value, direction.value, x, y, strength.value)
     max = 90
     increment = 10
     #strength = s
-    if strength >= max:
+    if strength2>= max:
         std.setPenColor(std.DARK_RED)
-    elif strength < max and strength >= (max - increment):
+    elif strength2 < max and strength >= (max - increment):
         std.setPenColor(std.RED)
-    elif strength < (max - increment) and strength >= (max - (2*increment)):
+    elif strength2 < (max - increment) and strength2 >= (max - (2*increment)):
         std.setPenColor(std.MAGENTA)
-    elif strength < (max - (2*increment)) and strength >= (max - (3*increment)):
+    elif strength2 < (max - (2*increment)) and strength2 >= (max - (3*increment)):
         std.setPenColor(std.VIOLET)
-    elif strength < (max - (3*increment)) and strength >= (max - (4*increment)):
+    elif strength2 < (max - (3*increment)) and strength2 >= (max - (4*increment)):
         std.setPenColor(std.PINK)
-    elif strength < (max - (4*increment)) and strength >= (max - (5*increment)):
+    elif strength2 < (max - (4*increment)) and strength2 >= (max - (5*increment)):
         std.setPenColor(std.BOOK_LIGHT_BLUE)
-    elif strength < (max - (5*increment)) and strength >= (max - (6*increment)):
+    elif strength2 < (max - (5*increment)) and strength2 >= (max - (6*increment)):
         std.setPenColor(std.BOOK_BLUE)
-    elif strength < (max - (6*increment)) and strength >= (max - (7*increment)):
+    elif strength2 < (max - (6*increment)) and strength2 >= (max - (7*increment)):
         std.setPenColor(std.BLUE)
-    elif strength < (max - (7*increment)) and strength >= (max - (8*increment)):
+    elif strength2 < (max - (7*increment)) and strength2 >= (max - (8*increment)):
         std.setPenColor(std.DARK_BLUE)
-    elif strength < (max - (8*increment)):
+    elif strength2 < (max - (8*increment)):
         std.setPenColor(std.BLACK)
     else:
         print('data not in expected range', strength)
@@ -70,7 +70,7 @@ def mapper():
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target = server.serveforever)
-p2 = Process(target = mapper)
+p2 = Process(target = mapper, args = (angles, time.value, direction.value, x, y, strength.value))
 p2.start()
 p1.start()
 p1.join()
