@@ -42,6 +42,7 @@ start2 = 0
 end = 0
 end2 = 0
 
+
 class SimpleEcho(WebSocket):
 
     def snd(self, msg):
@@ -331,7 +332,7 @@ def control(master_array, times, sock):
                 print temp
 
 
-                sock.snd(json.dumps(temp))
+                sock.connections[0].sendMessage(json.dumps(temp))
                 print "nah"
                 print master_array
                 #send message to SAM
@@ -340,7 +341,7 @@ def control(master_array, times, sock):
              else:
                  print "hi"
                  print temp
-                 sock.snd(json.dumps(temp))
+                 sock.connections[0].sendMessage(json.dumps(temp))
                  print "Yay"
                  print master_array
                  del master_array[2: rep[1] + 2]
@@ -354,7 +355,7 @@ def control(master_array, times, sock):
 
 
 
-server = SimpleWebSocketServer('', port, SimpleEcho, selectInterval = 0.1)
+server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target = server.serveforever)
 p2 = Process(target = distanceLoop)
 p3 = Process(target = control, args = (master_array, times, server))
