@@ -7,12 +7,14 @@ std.setXscale(-10.0, 10.0)
 std.setYscale(-10.0, 10.0)
 RADIUS = 0.2
 
-x = [0]
-y = [0]
-angles = [0]
-direction = 0
-time = 0
-strength = 0
+manager = Manager()
+x = manager.list([0])
+y = manager.list([0])
+angles = manager.list([0])
+
+direction = Value ('d', 0.0)
+time = Value ('d', 0,0)
+strength = Value ('d', 0,0)
 
 port = 1234
 
@@ -62,7 +64,9 @@ def mapper():
 
     std.filledCircle(x, y, RADIUS)
     std.show(500)
-
+    
+while True:
+    pass
 
 server = SimpleWebSocketServer('', port, SimpleEcho)
 p1 = Process(target = server.serveforever)
@@ -71,6 +75,3 @@ p2.start()
 p1.start()
 p1.join()
 p2.join()
-
-while True:
-    pass
