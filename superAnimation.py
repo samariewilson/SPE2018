@@ -22,12 +22,16 @@ while True:
         direction = z.readline()
         difference = z.readline()
         strength = z.readline()
+        print ("hello")
+        print (direction, difference, strength)
         mapper()
+        print ("no")
         t.sleep(1)
 
     print (direction, difference, strength)
 
 def mapper():
+    print ('hey')
     x2, y2, strength2 = get_point(angles, time.value, direction.value, x, y, strength.value)
     max = 90
     increment = 10
