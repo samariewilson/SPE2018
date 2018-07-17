@@ -57,4 +57,5 @@ if __name__ == '__main__':
     angles = [0]
     direction = 'l'
     time = 0
+    strength = 0
     print(get_point(angles, time, direction, x, y, strength))
