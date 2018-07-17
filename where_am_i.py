@@ -1,4 +1,3 @@
-import time
 import numpy as np
 global strength
 strength = 10
