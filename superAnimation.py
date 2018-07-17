@@ -53,7 +53,6 @@ while True:
         strength = z.readline()
         print ("hello")
         print (direction, difference, strength)
-        direction = float(direction)
         difference = float(difference)
         strength = float(difference)
         mapper()
