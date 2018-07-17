@@ -10,9 +10,10 @@ RADIUS = 0.2
 x = [0]
 y = [0]
 angles = [0]
-direction = 0
+direction = 's'
 time = 0
 strength = 0
+strength2 = 0
 
 def mapper():
     print ('hey')
@@ -20,7 +21,7 @@ def mapper():
     max = 90
     increment = 10
     #strength = s
-    if strength2>= max:
+    if strength2 >= max:
         std.setPenColor(std.DARK_RED)
     elif strength2 < max and strength2 >= (max - increment):
         std.setPenColor(std.RED)
