@@ -10,10 +10,9 @@ RADIUS = 0.2
 x = [0]
 y = [0]
 angles = [0]
-
-direction = Value('d', 0.0)
-time = Value('d', 0.0)
-strength = Value ('d', 0.0)
+direction = 0
+time = 0
+strength = 0
 
 def mapper():
     print ('hey')
