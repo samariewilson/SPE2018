@@ -52,8 +52,8 @@ while True:
         difference = z.readline()
         strength = z.readline()
         print("direction: " + direction)
-        print("difference: " + difference)
-        print("strength: " + strength)
+        print("difference: " + str(difference))
+        print("strength: " + str(strength)
         difference = float(difference)
         strength = float(difference)
         mapper()
@@ -61,5 +61,5 @@ while True:
         t.sleep(1)
 
     print("direction: " + direction)
-    print("difference: " + difference)
-    print("strength: " + strength)
+    print("difference: " + str(difference))
+    print("strength: " + str(strength))
