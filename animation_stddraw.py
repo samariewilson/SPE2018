@@ -12,9 +12,9 @@ x = manager.list([0])
 y = manager.list([0])
 angles = manager.list([0])
 
-direction = Value ('d', 0.0)
-time = Value ('d', 0,0)
-strength = Value ('d', 0,0)
+direction = manager.Value('d', 0.0)
+time = manager.Value('d', 0,0)
+strength = manager.Value ('d', 0,0)
 
 port = 1234
 
