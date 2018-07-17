@@ -1,5 +1,5 @@
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
-from multiprocessing import Process, Value
+from multiprocessing import Process, Value, Array, Manager
 import stddraw as std
 from where_am_i import *
 
@@ -64,7 +64,7 @@ def mapper():
 
     std.filledCircle(x, y, RADIUS)
     std.show(500)
-    
+
 while True:
     pass
 
