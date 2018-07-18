@@ -27,7 +27,7 @@ times = manager.list([0,0])
 picar.setup()
 fw = front_wheels.Front_Wheels(db='config')
 bw = back_wheels.Back_Wheels(db='config')
-forward_speed = 70
+forward_speed = 90
 
 port = 9876
 
