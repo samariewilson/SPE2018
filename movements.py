@@ -58,12 +58,12 @@ class SimpleEcho(WebSocket):
             #start = time.time()
             #print ("start")
             #print start
-            print "dog"
+            #print "dog"
             bw.speed = forward_speed
-            print "cat"
+            #print "cat"
             forward()
             #bw.backward()
-            print "rat"
+            #print "rat"
             #straight_turn()
 
         elif self.data == "down":
@@ -275,14 +275,14 @@ def control(master_array, times):
                      f.write(str(difference))
                      f.write("\n")
                      f.write(str(sig))
-                print "nah"
-                print master_array
+                #print "nah"
+                #print master_array
                 #send message to SAM
                 del master_array[2]
                 del times[2]
              else:
-                 print "hi"
-                 print temp
+                # print "hi"
+                # print temp
                  #clients[0].sendMessage(json.dumps(temp))
                  with open('nums5.txt', 'w') as f:
                      f.write(str(dir[1]))
@@ -290,8 +290,8 @@ def control(master_array, times):
                      f.write(str(difference))
                      f.write("\n")
                      f.write(str(sig))
-                 print "Yay"
-                 print master_array
+                # print "Yay"
+                 #print master_array
                  del master_array[2: rep[1] + 2]
                  del times[2: rep[1] + 2]
 
