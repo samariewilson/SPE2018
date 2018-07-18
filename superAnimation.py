@@ -21,6 +21,7 @@ def mapper():
     max = 90
     increment = 10
     #strength = s
+    print ('Hi')
     print (x2, y2, strength2)
     if strength2 >= max:
         std.setPenColor(std.DARK_RED)
