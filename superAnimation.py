@@ -22,7 +22,7 @@ def mapper():
     #strength = s
     if strength2 == 0.0:
         std.setPenColor(std.LIGHT_GRAY)
-    if strength2 >= max:
+    elif strength2 >= max:
         std.setPenColor(std.DARK_RED)
     elif strength2 < max and strength2 >= (max - increment):
         std.setPenColor(std.RED)
