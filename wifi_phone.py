@@ -23,3 +23,4 @@ def strength():
 
         return signal
     #time.sleep (2)
+strength()
