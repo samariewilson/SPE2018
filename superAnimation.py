@@ -63,12 +63,12 @@ while True:
         mapper()
         print ("no")
         t.sleep(1)
-    with open('nums.txt', 'w') as f:
-        f.write("0")
-        f.write("\n")
-        f.write("0")
-        f.write("\n")
-        f.write("0")
+    #with open('nums.txt', 'w') as f:
+        #f.write("0")
+        #f.write("\n")
+        #f.write("0")
+        #f.write("\n")
+        #f.write("0")
 
 
     print("direction: ")
