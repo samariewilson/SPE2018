@@ -269,7 +269,7 @@ def control(master_array, times):
                 print "no"
                 print json.dumps(temp)
                 #clients[0].sendMessage(json.dumps(temp))
-                with open('text.txt', 'w') as f:
+                with open('nums.txt', 'w') as f:
                      f.write(str(dir[1]))
                      f.write("\n")
                      f.write(str(difference))
@@ -284,7 +284,7 @@ def control(master_array, times):
                  print "hi"
                  print temp
                  #clients[0].sendMessage(json.dumps(temp))
-                 with open('data.txt', 'w') as f:
+                 with open('nums.txt', 'w') as f:
                      f.write(str(dir[1]))
                      f.write("\n")
                      f.write(str(difference))
