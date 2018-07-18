@@ -52,10 +52,11 @@ def get_strength(strength):
     return strength
 
 if __name__ == '__main__':
-    x = [1]
-    y = [1]
-    angles = [1]
-    direction = 'l'
-    time = 1
+    x = [0]
+    y = [0]
+    angles = [0]
+    direction = 'r'
+    time = 4.89
     strength = 1
     print(get_point(angles, time, direction, x, y, strength))
+    print(angles)
