@@ -19,7 +19,7 @@ def strength():
                 age = 0
                 break
 
-            #print signal
+        print signal
 
         return signal
     #time.sleep (2)
