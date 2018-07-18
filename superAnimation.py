@@ -64,11 +64,11 @@ while True:
         z.write("0")
         z.truncate()
 
-        print("direction2: ")
+        print("direction: ")
         print (direction)
-        print("difference2: ")
+        print("time: ")
         print (difference)
-        print ("strength2")
+        print ("strength: ")
         print (strength)
 
         t.sleep(1)
