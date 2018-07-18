@@ -49,7 +49,7 @@ def mapper():
     std.show(500)
 
 while True:
-    with open('nums.txt', 'r+') as z:
+    with open('nums2.txt', 'r+') as z:
         direction = z.readline()
         difference = z.readline()
         strength = z.readline()
