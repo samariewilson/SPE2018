@@ -5,7 +5,7 @@ from where_am_i import *
 
 std.setXscale(-20.0, 20.0)
 std.setYscale(-20.0, 20.0)
-RADIUS = 0.2
+RADIUS = 0.8
 
 x = [0]
 y = [0]
