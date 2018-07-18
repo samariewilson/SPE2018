@@ -298,7 +298,7 @@ def control(master_array, times):
              # socket.sendMessage...(temp)
 
 
-        time.sleep(0.5)
+        time.sleep(1)
 
 
 

@@ -70,4 +70,4 @@ while True:
         print ("strength: ")
         print (strength)
 
-        t.sleep(0.5)
+        t.sleep(1)
