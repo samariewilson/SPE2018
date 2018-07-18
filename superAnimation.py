@@ -16,12 +16,10 @@ strength = 0
 strength2 = 0
 
 def mapper():
-    print ('begin mapper')
     x2, y2, strength2 = get_point(angles, difference, direction, x, y, strength)
     max = 90
     increment = 10
     #strength = s
-    print ('Hi')
     print (x2, y2, strength2)
     if strength2 >= max:
         std.setPenColor(std.DARK_RED)
@@ -53,15 +51,10 @@ while True:
         direction = z.readline()
         difference = z.readline()
         strength = z.readline()
-        print("direction: ")
-        print (direction)
-        print("difference: ")
-        print (difference)
         #print("strength: " + str(strength)
         difference = float(difference)
         strength = float(strength)
         mapper()
-        print ("no")
 
         z.seek(0)
         z.write("0")
@@ -79,11 +72,3 @@ while True:
         print (strength)
 
         t.sleep(1)
-
-
-    print("direction: ")
-    print (direction)
-    print("difference: ")
-    print (difference)
-    print("strength: ")
-    print(strength)
