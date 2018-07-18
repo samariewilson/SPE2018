@@ -64,14 +64,14 @@ class SimpleEcho(WebSocket):
             forward()
             #bw.backward()
             print "rat"
-            straight_turn()
+            #straight_turn()
 
         elif self.data == "down":
             #start = time.time()
             bw.speed = forward_speed
             backward()
             #bw.forward()
-            straight_turn()
+            #straight_turn()
 
         elif self.data == "right":
             #start2 = time.time()
