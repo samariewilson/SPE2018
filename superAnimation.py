@@ -63,13 +63,13 @@ while True:
         mapper()
         print ("no")
         t.sleep(1)
-    z = open('data.txt', 'w')
-    z.write("0")
-    f.write("\n")
-    z.write("0")
-    f.write("\n")
-    z.write("0")
-    z.close()
+    with open('data.txt', 'w') as f:
+        f.write("0")
+        f.write("\n")
+        f.write("0")
+        f.write("\n")
+        f.write("0")
+
 
     print("direction: ")
     print (direction)
