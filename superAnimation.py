@@ -11,13 +11,13 @@ x = [0]
 y = [0]
 angles = [0]
 direction = 's'
-time = 0
+difference = 0
 strength = 0
 strength2 = 0
 
 def mapper():
     print ('begin mapper')
-    x2, y2, strength2 = get_point(angles, time, direction, x, y, strength)
+    x2, y2, strength2 = get_point(angles, difference, direction, x, y, strength)
     max = 90
     increment = 10
     #strength = s
