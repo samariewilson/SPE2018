@@ -3,8 +3,8 @@ import time as t
 from where_am_i import *
 
 
-std.setXscale(-10.0, 10.0)
-std.setYscale(-10.0, 10.0)
+std.setXscale(-20.0, 20.0)
+std.setYscale(-20.0, 20.0)
 RADIUS = 0.2
 
 x = [0]
