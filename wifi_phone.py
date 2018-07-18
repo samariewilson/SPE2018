@@ -4,7 +4,6 @@ import iwlist
 import time
 
 def strength():
-while (True):
     content = iwlist.scan(interface='wlan0')
     cells = iwlist.parse(content)
     signal = 0
