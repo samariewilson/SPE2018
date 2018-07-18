@@ -19,5 +19,5 @@ def strength():
             break
     return signal
     #time.sleep (2)
-while True:
-    print strength()
+#while True:
+    #print strength()
