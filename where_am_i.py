@@ -12,7 +12,7 @@ def get_point(angles, time, direction, x, y, strength):
                                           # distance travled in x direction
     y_dist = np.absolute(np.cos(angle) * distance)
     angle = np.degrees(angle)             # convert back to degrees
-    print("angles: ",angles,x_dist,y_dist)
+    #print("angles: ",angles,x_dist,y_dist)
     if angle >= 0 and angle < 90:
         x.append(x[-1] - x_dist)
         y.append(y[-1] + y_dist)
@@ -28,7 +28,7 @@ def get_point(angles, time, direction, x, y, strength):
     elif angle >= 270 and angle < 360:
         x.append(x[-1] + x_dist)
         y.append(y[-1] + y_dist)
-    print([x,y])
+    #print([x,y])
     return [x, y, strength]
 
                                           # returns angle of car from initial
@@ -55,5 +55,5 @@ if __name__ == '__main__':
     direction = 'r'
     time = 4.89
     strength = 1
-    print(get_point(angles, time, direction, x, y, strength))
-    print(angles)
+    #print(get_point(angles, time, direction, x, y, strength))
+    #print(angles)
