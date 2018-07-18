@@ -64,6 +64,11 @@ while True:
         print ("no")
         t.sleep(1)
     z = open('data.txt', 'w')
+    z.write("0")
+    f.write("\n")
+    z.write("0")
+    f.write("\n")
+    z.write("0")
     z.close()
 
     print("direction: ")
