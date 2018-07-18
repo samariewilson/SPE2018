@@ -48,9 +48,9 @@ def mapper():
 
 while True:
     with open('nums5.txt', 'r+') as z:
-        direction = z.readline()
-        difference = z.readline()
-        strength = z.readline()
+        direction = z.readline().rstrip()
+        difference = z.readline().rstrip()
+        strength = z.readline().rstrip()
         #print("strength: " + str(strength)
         difference = float(difference)
         strength = float(strength)
