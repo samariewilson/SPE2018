@@ -18,7 +18,7 @@ strength2 = 0
 def mapper():
     x2, y2, strength2 = get_point(angles, difference, direction, x, y, strength)
     max = -30
-    increment = 10
+    increment = 5
     #strength = s
     print (x2, y2, strength2)
     if strength2 >= max:
