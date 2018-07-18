@@ -17,10 +17,9 @@ strength2 = 0
 
 def mapper():
     x2, y2, strength2 = get_point(angles, difference, direction, x, y, strength)
-    max = 90
-    increment = 10
+    max = -30
+    increment = 5
     #strength = s
-    print (x2, y2, strength2)
     if strength2 >= max:
         std.setPenColor(std.DARK_RED)
     elif strength2 < max and strength2 >= (max - increment):
@@ -48,9 +47,9 @@ def mapper():
 
 while True:
     with open('nums5.txt', 'r+') as z:
-        direction = z.readline()
-        difference = z.readline()
-        strength = z.readline()
+        direction = z.readline().rstrip()
+        difference = z.readline().rstrip()
+        strength = z.readline().rstrip()
         #print("strength: " + str(strength)
         difference = float(difference)
         strength = float(strength)
@@ -71,4 +70,4 @@ while True:
         print ("strength: ")
         print (strength)
 
-        t.sleep(1)
+        t.sleep(0.5)
