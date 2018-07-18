@@ -63,6 +63,8 @@ while True:
         mapper()
         print ("no")
         t.sleep(1)
+    z = open('data.txt', 'w')
+    z.close()
 
     print("direction: ")
     print (direction)
